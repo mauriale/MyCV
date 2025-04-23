@@ -6,6 +6,9 @@
     --light-gray: #f5f5f5;
     --border-color: #ddd;
     --bg-color: #fff;
+    --icon-color: #3498db;
+    --skill-bar-bg: #e0e0e0;
+    --skill-bar-fill: #3498db;
 }
 
 /* Dark mode colors */
@@ -17,6 +20,9 @@
     --light-gray: #2c3e50;
     --border-color: #4a5568;
     --bg-color: #1a202c;
+    --icon-color: #2980b9;
+    --skill-bar-bg: #4a5568;
+    --skill-bar-fill: #2980b9;
 }
 
 * {
@@ -34,6 +40,22 @@ body {
     padding: 20px;
     background-color: var(--bg-color);
     transition: all 0.3s ease;
+}
+
+/* Skip to content link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 .cv-container {
@@ -93,6 +115,23 @@ h1 {
     border-radius: 5px;
 }
 
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.social-links a {
+    color: var(--icon-color);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2);
+}
+
 .main-content {
     padding: 0 10px;
 }
@@ -104,6 +143,13 @@ h2 {
     margin: 25px 0 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+h2 i {
+    margin-right: 10px;
+    color: var(--icon-color);
 }
 
 h3 {
@@ -140,17 +186,33 @@ ul li::before {
 
 .job {
     margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.job:last-child {
+    border-bottom: none;
 }
 
 .job-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+    align-items: center;
 }
 
 .company {
     font-weight: 600;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.company-logo {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    object-fit: contain;
 }
 
 .date {
@@ -171,78 +233,128 @@ ul li::before {
 .language-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.language-name {
+    flex: 1;
+}
+
+.language-level {
+    flex: 1;
+    text-align: right;
+}
+
+.skill-bar-container {
+    height: 8px;
+    background-color: var(--skill-bar-bg);
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.skill-bar {
+    height: 100%;
+    background-color: var(--skill-bar-fill);
+    border-radius: 4px;
 }
 
 .client-dept {
     font-weight: bold;
 }
 
-/* Dark mode toggle */
-.theme-toggle {
+.project-card {
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.project-title i {
+    margin-right: 8px;
+    color: var(--icon-color);
+}
+
+.project-links {
+    margin-top: 10px;
+}
+
+.project-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin-right: 15px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.project-links a i {
+    margin-right: 5px;
+}
+
+.project-links a:hover {
+    text-decoration: underline;
+}
+
+/* Action buttons panel */
+.action-buttons-panel {
     position: fixed;
-    top: 20px;
     right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     z-index: 999;
-    cursor: pointer;
+}
+
+.action-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     background-color: var(--secondary-color);
     color: white;
     border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.theme-toggle:hover {
+.action-button:hover {
     transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-/* Print button */
-.print-btn {
-    position: fixed;
-    top: 20px;
-    right: 80px;
-    z-index: 999;
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.action-button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
 }
 
-.print-btn:hover {
-    background-color: var(--primary-color);
-}
-
-/* Download PDF button */
-.download-pdf {
-    position: fixed;
-    top: 20px;
-    right: 170px;
-    z-index: 999;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.download-pdf:hover {
-    background-color: var(--secondary-color);
+/* Remove old button styles */
+.theme-toggle, .print-btn, .download-pdf {
+    display: none;
 }
 
 /* Print styles */
 @media print {
-    .theme-toggle, .print-btn, .download-pdf {
+    .action-buttons-panel {
         display: none;
     }
     
@@ -267,6 +379,11 @@ ul li::before {
     h3 {
         font-size: 12pt;
     }
+    
+    .project-card {
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+    }
 }
 
 /* Responsive design */
@@ -289,19 +406,33 @@ ul li::before {
         text-align: center;
     }
     
-    .theme-toggle {
-        top: 10px;
+    .action-buttons-panel {
         right: 10px;
+        bottom: 20px;
+        top: auto;
+        transform: none;
+        flex-direction: row;
     }
     
-    .print-btn {
-        top: 10px;
-        right: 70px;
+    .sidebar-menu {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
     }
     
-    .download-pdf {
-        top: 10px;
-        right: 160px;
+    .sidebar-menu a {
+        padding: 5px 10px;
+        background-color: var(--light-gray);
+        border-radius: 5px;
+        text-decoration: none;
+        color: var(--text-color);
+    }
+    
+    .sidebar-menu a.active {
+        background-color: var(--secondary-color);
+        color: white;
     }
 }
 
@@ -313,4 +444,14 @@ ul li::before {
 
 .cv-container {
     animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Accessibility improvements */
+a:focus, button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.section {
+    scroll-margin-top: 20px;
 }
