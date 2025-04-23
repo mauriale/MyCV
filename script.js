@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (printButton) printButton.addEventListener('click', printCV);
     if (printCvButton) printCvButton.addEventListener('click', printCV);
     
-    // Direct PDF generation without browser dialog using jsPDF and dom-to-image
+    // PDF generation using pdfmake and dom-to-image
     const downloadPdfButton = document.getElementById('download-pdf');
     const downloadPdfOldButton = document.getElementById('download-pdf-old');
     
@@ -66,11 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(loadingIndicator);
         
         try {
-            // Check if jsPDF is loaded
-            if (!window.jspdf || !window.jspdf.jsPDF) {
-                throw new Error("jsPDF library not loaded");
-            }
-            
             // Remember current theme and switch to light theme temporarily
             const originalTheme = document.documentElement.getAttribute('data-theme');
             document.documentElement.setAttribute('data-theme', 'light');
@@ -78,90 +73,115 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mark body for PDF generation styling
             document.body.classList.add('generating-pdf');
             
-            // Function to wait a bit to ensure styles are applied
-            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-            await sleep(100);  // Short delay to allow CSS changes to apply
+            // Wait for styles to apply
+            await new Promise(resolve => setTimeout(resolve, 100));
             
-            // Get the CV container element
-            const element = document.querySelector('.cv-container');
+            // Use dom-to-image to capture the CV
+            const cvElement = document.querySelector('.cv-container');
             
-            // Load jsPDF module
-            const { jsPDF } = window.jspdf;
+            // Create a pdfmake document definition
+            const docDefinition = {
+                pageSize: 'A4',
+                pageMargins: [20, 20, 20, 20],
+                content: [],
+                styles: {
+                    header: {
+                        fontSize: 18,
+                        bold: true,
+                        margin: [0, 0, 0, 10]
+                    },
+                    subheader: {
+                        fontSize: 14,
+                        bold: true,
+                        margin: [0, 10, 0, 5]
+                    },
+                    normal: {
+                        fontSize: 10,
+                        margin: [0, 3, 0, 3]
+                    }
+                }
+            };
             
-            // A4 size in mm
-            const a4Width = 210;
-            const a4Height = 297;
-            const margin = 10;
-            
-            // Create a new jsPDF instance
-            const doc = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4',
-                compress: true
-            });
-            
-            // Use html2canvas with custom configuration
-            const canvas = await html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                windowWidth: 1200,
-                logging: false,
-                removeContainer: true,
-                foreignObjectRendering: false,
-                letterRendering: true
-            });
-            
-            // Get canvas dimensions and calculate scale to fit A4
-            const imgData = canvas.toDataURL('image/jpeg', 0.95);
-            
-            // Calculate scale to fit width (accounting for margins)
-            const contentWidth = a4Width - (margin * 2);
-            const contentHeight = a4Height - (margin * 2);
-            const imgWidth = contentWidth;
-            const imgHeight = canvas.height * imgWidth / canvas.width;
-            
-            // Add to first page
-            doc.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
-            
-            // If content is longer than one page, add more pages
-            let heightLeft = imgHeight - contentHeight;
-            let position = margin - contentHeight;
-            
-            while (heightLeft > 0) {
-                doc.addPage();
-                doc.addImage(imgData, 'JPEG', margin, position, imgWidth, imgHeight);
+            try {
+                // Use dom-to-image to convert CV to image
+                const dataUrl = await domtoimage.toPng(cvElement, {
+                    quality: 1.0,
+                    bgcolor: 'white',
+                    width: cvElement.offsetWidth,
+                    height: cvElement.offsetHeight,
+                    style: {
+                        'transform': 'scale(1)',
+                        'transform-origin': 'top left'
+                    }
+                });
                 
-                heightLeft -= contentHeight;
-                position -= contentHeight;
+                // Get image dimensions
+                const img = new Image();
+                img.src = dataUrl;
+                
+                await new Promise((resolve) => {
+                    img.onload = function() {
+                        // Calculate dimensions
+                        const imgWidth = docDefinition.pageSize.width - (docDefinition.pageMargins[0] + docDefinition.pageMargins[2]);
+                        const imgHeight = img.height * (imgWidth / img.width);
+                        
+                        // Add image to the PDF content
+                        docDefinition.content.push({
+                            image: dataUrl,
+                            width: imgWidth,
+                            // Only show part of the image on first page
+                            fit: [imgWidth, 720] // A4 height (841.89) - margins
+                        });
+                        
+                        // If image is larger than page height, add more pages
+                        if (imgHeight > 720) { // A4 usable height in points
+                            docDefinition.content.push({
+                                image: dataUrl,
+                                width: imgWidth,
+                                pageBreak: 'before',
+                                // Position and crop image for second page
+                                fit: [imgWidth, 720],
+                                margin: [0, -720, 0, 0] // Move image up to show bottom part
+                            });
+                        }
+                        
+                        resolve();
+                    };
+                    
+                    img.onerror = function() {
+                        // Fallback if image loading fails
+                        docDefinition.content.push({
+                            text: 'Failed to load CV image',
+                            style: 'header'
+                        });
+                        resolve();
+                    };
+                });
+                
+                // Create and download the PDF
+                pdfMake.createPdf(docDefinition).download("Mauricio_Inocencio_CV.pdf");
+                
+            } catch (imgError) {
+                console.error('Error capturing image:', imgError);
+                
+                // Fallback to text-based PDF
+                docDefinition.content.push({
+                    text: 'PDF generation failed - please use print function instead',
+                    style: 'header'
+                });
+                
+                pdfMake.createPdf(docDefinition).download("Mauricio_Inocencio_CV.pdf");
             }
-            
-            // Save the PDF file
-            doc.save('Mauricio_Inocencio_CV.pdf');
-            
+        } catch (error) {
+            console.error('Error in PDF generation:', error);
+            alert('Hubo un problema al generar el PDF. Por favor intenta utilizar la función de impresión del navegador.');
+        } finally {
             // Clean up
             document.body.classList.remove('generating-pdf');
-            document.documentElement.setAttribute('data-theme', originalTheme);
-            document.body.removeChild(loadingIndicator);
-            
-        } catch (error) {
-            console.error('Error generating PDF:', error);
-            
-            // Clean up on error
-            document.body.classList.remove('generating-pdf');
+            document.documentElement.setAttribute('data-theme', originalTheme || 'light');
             if (document.body.contains(loadingIndicator)) {
                 document.body.removeChild(loadingIndicator);
             }
-            
-            // Restore original theme
-            if (originalTheme) {
-                document.documentElement.setAttribute('data-theme', originalTheme);
-            }
-            
-            // Show error message
-            alert('Hubo un problema al generar el PDF: ' + error.message);
         }
     };
     
