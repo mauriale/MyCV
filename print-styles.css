@@ -1,0 +1,198 @@
+/* Print-specific styles for CV */
+@media print {
+    /* General page settings */
+    @page {
+        size: A4 portrait;
+        margin: 10mm 10mm 10mm 10mm;
+    }
+    
+    body {
+        font-size: 10pt !important;
+        line-height: 1.3 !important;
+        color: #000 !important;
+        background-color: #fff !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Layout adjustments */
+    .cv-container {
+        display: grid !important;
+        grid-template-columns: 1fr 2fr !important;
+        gap: 15px !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 18pt !important;
+        margin-bottom: 6px !important;
+        color: #2c3e50 !important;
+    }
+    
+    h2 {
+        font-size: 14pt !important;
+        margin: 10px 0 5px !important;
+        color: #2c3e50 !important;
+        page-break-after: avoid !important;
+    }
+    
+    h3 {
+        font-size: 12pt !important;
+        margin: 8px 0 4px !important;
+        color: #3498db !important;
+        page-break-after: avoid !important;
+    }
+    
+    p, li {
+        font-size: 9pt !important;
+        margin-bottom: 3px !important;
+    }
+    
+    .job-title {
+        font-size: 12pt !important;
+        color: #3498db !important;
+    }
+    
+    /* Section spacing */
+    .cv-header {
+        padding-bottom: 10px !important;
+        margin-bottom: 10px !important;
+        border-bottom: 1px solid #3498db !important;
+    }
+    
+    .sidebar {
+        background-color: #f8f8f8 !important;
+        padding: 10px !important;
+        border-radius: 0 !important;
+        border-right: 1px solid #ddd !important;
+    }
+    
+    .main-content {
+        padding: 0 5px !important;
+    }
+    
+    /* Jobs and projects */
+    .job {
+        margin-bottom: 10px !important;
+        padding-bottom: 5px !important;
+        border-bottom: 1px dotted #ddd !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .job:last-child {
+        border-bottom: none !important;
+    }
+    
+    .job-header {
+        margin-bottom: 2px !important;
+    }
+    
+    .company, .date {
+        font-size: 10pt !important;
+    }
+    
+    .company {
+        color: #2c3e50 !important;
+    }
+    
+    .date {
+        color: #3498db !important;
+    }
+    
+    .location {
+        margin-bottom: 4px !important;
+        font-size: 9pt !important;
+        color: #666 !important;
+    }
+    
+    .project-card {
+        padding: 8px !important;
+        margin-bottom: 8px !important;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        background-color: #f8f8f8 !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* Skills and languages */
+    .skill-bar-container {
+        height: 5px !important;
+        margin-top: 2px !important;
+        background-color: #e0e0e0 !important;
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    .skill-bar {
+        background-color: #3498db !important;
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    .language-item {
+        margin-bottom: 5px !important;
+    }
+    
+    /* Icons */
+    i.fas, i.fab {
+        color: #3498db !important;
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    .company-icon {
+        color: #3498db !important;
+        margin-right: 5px !important;
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    /* Hide non-essential elements */
+    .action-buttons-panel,
+    .theme-toggle,
+    .print-btn,
+    .download-pdf,
+    .skip-link,
+    .social-links {
+        display: none !important;
+    }
+    
+    /* Ensure page breaks don't disrupt content */
+    .section {
+        page-break-inside: avoid !important;
+    }
+    
+    /* Optimize space in Additional Activities section */
+    #activities-section p,
+    #certifications-section li {
+        font-size: 8pt !important;
+    }
+    
+    /* Compact lists */
+    ul {
+        margin-top: 3px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    ul li {
+        padding-left: 15px !important;
+    }
+    
+    ul li::before {
+        width: 15px !important;
+    }
+    
+    /* Links */
+    a {
+        color: #2c3e50 !important;
+        text-decoration: none !important;
+    }
+    
+    /* Contact info */
+    .contact-info p {
+        margin-bottom: 2px !important;
+    }
+}
