@@ -1,1 +1,1 @@
-This file is to trigger GitHub Actions workflow for GitHub Pages deployment.
+/* This file is intentionally being removed */
