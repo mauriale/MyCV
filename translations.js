@@ -1,3 +1,4 @@
+// Define translations
 const translations = {
     en: {
         jobTitle: "Senior Project Manager & LEAN Portfolio Manager",
