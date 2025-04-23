@@ -24,7 +24,6 @@
     <!-- Libraries for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <!-- Skip to content link for accessibility -->
@@ -373,13 +372,29 @@
             100% { transform: rotate(360deg); }
         }
         
-        .pdf-export .theme-toggle,
-        .pdf-export .print-btn,
-        .pdf-export .download-pdf,
-        .pdf-export .action-buttons-panel,
-        .pdf-export .skip-link,
-        .pdf-export .social-links {
+        .generating-pdf {
+            background-color: white !important;
+        }
+        
+        .generating-pdf .cv-container {
+            max-width: 900px !important;
+            margin: 0 auto !important;
+        }
+        
+        .generating-pdf .theme-toggle,
+        .generating-pdf .print-btn,
+        .generating-pdf .download-pdf,
+        .generating-pdf .action-buttons-panel,
+        .generating-pdf .skip-link,
+        .generating-pdf .social-links {
             display: none !important;
+        }
+        
+        @media (min-height: 1200px) {
+            .generating-pdf .cv-container {
+                transform: scale(0.9);
+                transform-origin: top center;
+            }
         }
     </style>
     
