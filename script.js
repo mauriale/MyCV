@@ -54,122 +54,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (printButton) printButton.addEventListener('click', printCV);
     if (printCvButton) printCvButton.addEventListener('click', printCV);
     
-    // Simple PDF generation that ensures content is visible
+    // PDF generation - completely new approach
     const downloadPdfButton = document.getElementById('download-pdf');
     const downloadPdfOldButton = document.getElementById('download-pdf-old');
     
     const downloadPdf = function() {
-        try {
-            // Check if jsPDF is loaded
-            if (!window.jspdf || !window.jspdf.jsPDF) {
-                console.error("jsPDF not loaded properly");
-                alert("PDF generation library is not loaded. Please reload the page or try a different browser.");
-                return;
-            }
-            
-            const { jsPDF } = window.jspdf;
-            
-            // Set a light theme temporarily for PDF generation
-            const originalTheme = document.documentElement.getAttribute('data-theme');
-            document.documentElement.setAttribute('data-theme', 'light');
-            
-            // Add a temporary print class to the body
-            document.body.classList.add('generating-pdf');
-            
-            // Create PDF document
-            const doc = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
-            });
-            
-            // Get container dimensions
-            const container = document.querySelector('.cv-container');
-            const containerWidth = container.offsetWidth;
-            const containerHeight = container.offsetHeight;
-            
-            // A4 dimensions in mm (slightly reduced to ensure margins)
-            const pageWidth = 210 - 20; // A4 width minus margins
-            const pageHeight = 297 - 20; // A4 height minus margins
-            
-            console.log("Starting PDF generation process...");
-            
-            // Use html2canvas with explicit dimensions and simplified settings
-            html2canvas(container, {
-                scale: 1.5, // Increased scale for better quality
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                logging: true, // Enable logging for debugging
-                width: containerWidth,
-                height: containerHeight,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: document.documentElement.offsetWidth,
-                windowHeight: document.documentElement.offsetHeight
-            }).then(function(canvas) {
-                console.log("Canvas generated successfully", canvas.width, canvas.height);
-                
-                try {
-                    // Get canvas as an image
-                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                    
-                    // Calculate scaled dimensions to fit on A4
-                    const ratio = canvas.width / pageWidth;
-                    const scaledHeight = canvas.height / ratio;
-                    
-                    // Add to PDF (10mm margins on all sides)
-                    doc.addImage(imgData, 'JPEG', 10, 10, pageWidth, scaledHeight);
-                    
-                    // If content is taller than one page, add additional pages
-                    if (scaledHeight > pageHeight) {
-                        let remainingHeight = scaledHeight;
-                        let currentPosition = 0;
-                        
-                        // First page already added
-                        remainingHeight -= pageHeight;
-                        currentPosition += pageHeight;
-                        
-                        // Add more pages if needed
-                        while (remainingHeight > 0) {
-                            doc.addPage();
-                            doc.addImage(
-                                imgData, 
-                                'JPEG', 
-                                10, // x position
-                                10 - currentPosition, // y position (negative to show part of image)
-                                pageWidth, 
-                                scaledHeight
-                            );
-                            
-                            currentPosition += pageHeight;
-                            remainingHeight -= pageHeight;
-                        }
-                    }
-                    
-                    // Save the PDF
-                    doc.save('Mauricio_Inocencio_CV.pdf');
-                    console.log("PDF saved successfully");
-                } catch (error) {
-                    console.error("Error generating PDF from canvas:", error);
-                    alert("There was an error creating your PDF. Error details: " + error.message);
-                }
-                
-                // Restore original theme and remove temporary class
-                document.documentElement.setAttribute('data-theme', originalTheme);
-                document.body.classList.remove('generating-pdf');
-                
-            }).catch(function(error) {
-                console.error("Error in html2canvas:", error);
-                alert("There was an error capturing your CV for PDF. Error details: " + error.message);
-                document.documentElement.setAttribute('data-theme', originalTheme);
-                document.body.classList.remove('generating-pdf');
-            });
-            
-        } catch (error) {
-            console.error('Error in PDF generation process:', error);
-            alert('Could not generate PDF. Error details: ' + error.message);
-        }
+        // For browsers without proper PDF generation capability, just open a print dialog
+        // which allows saving as PDF through the browser's print interface
+        
+        // Display a helpful message to the user
+        alert('Para obtener tu CV en PDF, usa la opción "Guardar como PDF" en el diálogo de impresión que aparecerá a continuación.');
+        
+        // Use the browser's built-in print functionality
+        window.print();
     };
     
     if (downloadPdfButton) downloadPdfButton.addEventListener('click', downloadPdf);
