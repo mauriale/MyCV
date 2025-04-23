@@ -1,5 +1,5 @@
 /* Print-specific styles for CV */
-@media print {
+@media print, .generating-pdf {
     /* General page settings */
     @page {
         size: A4 portrait;
@@ -23,6 +23,7 @@
         grid-template-columns: 1fr 2fr !important;
         gap: 15px !important;
         page-break-inside: avoid !important;
+        background: white !important;
     }
     
     /* Typography */
@@ -195,4 +196,14 @@
     .contact-info p {
         margin-bottom: 2px !important;
     }
+}
+
+/* Special class for PDF generation */
+.generating-pdf {
+    background-color: white !important;
+}
+
+.generating-pdf * {
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
 }
