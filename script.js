@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (printButton) printButton.addEventListener('click', printCV);
     if (printCvButton) printCvButton.addEventListener('click', printCV);
     
-    // PDF download functionality
+    // PDF download functionality - Improved for better formatting
     const downloadPdfButton = document.getElementById('download-pdf');
     const downloadPdfOldButton = document.getElementById('download-pdf-old');
     
@@ -62,40 +62,97 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const { jsPDF } = window.jspdf;
             
-            // Create a new PDF document
+            // Before generating PDF, we'll temporarily modify some styles for better PDF output
+            const cvContainer = document.querySelector('.cv-container');
+            
+            // Store original styles to restore later
+            const originalStyles = {
+                fontSize: window.getComputedStyle(document.body).fontSize,
+                maxWidth: cvContainer.style.maxWidth,
+                padding: cvContainer.style.padding,
+                gap: cvContainer.style.gap
+            };
+            
+            // Apply PDF-optimized styles
+            document.body.style.fontSize = '10px'; // Smaller font size for PDF
+            cvContainer.style.maxWidth = '100%';
+            cvContainer.style.padding = '10px';
+            cvContainer.style.gap = '15px';
+            
+            // Hide action buttons and any other non-essential elements for PDF
+            const elementsToHideForPdf = document.querySelectorAll('.action-buttons-panel, .theme-toggle, .print-btn, .download-pdf');
+            elementsToHideForPdf.forEach(el => {
+                if (el) el.style.display = 'none';
+            });
+            
+            // Create a new PDF document - A4 size
             const doc = new jsPDF({
                 orientation: 'portrait',
                 unit: 'mm',
-                format: 'a4'
+                format: 'a4',
+                compress: true
             });
             
-            // Use html2canvas to capture the CV content
-            html2canvas(document.querySelector('.cv-container'), {
-                scale: 2,
+            // Calculate optimal scale for content
+            const contentWidth = cvContainer.offsetWidth;
+            const contentHeight = cvContainer.offsetHeight;
+            const pageWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const marginX = 10; // Horizontal margin in mm
+            const marginY = 10; // Vertical margin in mm
+            const availableWidth = pageWidth - (2 * marginX);
+            const availableHeight = pageHeight - (2 * marginY);
+            
+            // Use html2canvas with proper scaling
+            html2canvas(cvContainer, {
+                scale: 2, // Higher scale for better quality
                 useCORS: true,
                 logging: false,
-                allowTaint: true
+                allowTaint: true,
+                width: contentWidth,
+                height: contentHeight,
+                backgroundColor: '#FFFFFF'
             }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                const imgWidth = 210; // A4 width in mm
-                const pageHeight = 297; // A4 height in mm
-                const imgHeight = canvas.height * imgWidth / canvas.width;
-                let heightLeft = imgHeight;
-                let position = 0;
+                // Calculate scale to fit content on one or two pages
+                const imgWidth = availableWidth;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 
-                doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
+                // Add first page
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                doc.addImage(imgData, 'JPEG', marginX, marginY, imgWidth, imgHeight);
                 
-                // Add new pages if content exceeds a single page
-                while (heightLeft >= 0) {
-                    position = heightLeft - imgHeight;
+                // If content exceeds one page, add additional pages as needed
+                let remainingHeight = imgHeight - availableHeight;
+                let positionY = availableHeight;
+                
+                while (remainingHeight > 0) {
+                    // Add a new page
                     doc.addPage();
-                    doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
+                    
+                    // Calculate position for next section
+                    const offsetY = -(positionY - marginY);
+                    
+                    // Add image (same content but shifted up)
+                    doc.addImage(imgData, 'JPEG', marginX, offsetY, imgWidth, imgHeight);
+                    
+                    // Update for next page if needed
+                    positionY += availableHeight;
+                    remainingHeight -= availableHeight;
                 }
                 
                 // Save the PDF
                 doc.save('Mauricio_Inocencio_CV.pdf');
+                
+                // Restore original styles
+                document.body.style.fontSize = originalStyles.fontSize;
+                cvContainer.style.maxWidth = originalStyles.maxWidth;
+                cvContainer.style.padding = originalStyles.padding;
+                cvContainer.style.gap = originalStyles.gap;
+                
+                // Restore visibility of hidden elements
+                elementsToHideForPdf.forEach(el => {
+                    if (el) el.style.display = '';
+                });
             });
         } catch (error) {
             console.error('Error generating PDF:', error);
