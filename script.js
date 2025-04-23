@@ -54,201 +54,123 @@ document.addEventListener('DOMContentLoaded', function() {
     if (printButton) printButton.addEventListener('click', printCV);
     if (printCvButton) printCvButton.addEventListener('click', printCV);
     
-    // Improved PDF download functionality
+    // Simple PDF generation that ensures content is visible
     const downloadPdfButton = document.getElementById('download-pdf');
     const downloadPdfOldButton = document.getElementById('download-pdf-old');
     
     const downloadPdf = function() {
         try {
+            // Check if jsPDF is loaded
+            if (!window.jspdf || !window.jspdf.jsPDF) {
+                console.error("jsPDF not loaded properly");
+                alert("PDF generation library is not loaded. Please reload the page or try a different browser.");
+                return;
+            }
+            
             const { jsPDF } = window.jspdf;
             
-            // Create a clone of the CV container to modify for PDF export
-            const cvContainer = document.querySelector('.cv-container');
-            const clone = cvContainer.cloneNode(true);
+            // Set a light theme temporarily for PDF generation
+            const originalTheme = document.documentElement.getAttribute('data-theme');
+            document.documentElement.setAttribute('data-theme', 'light');
             
-            // Apply PDF-specific styles to the clone
-            preparePdfLayout(clone);
+            // Add a temporary print class to the body
+            document.body.classList.add('generating-pdf');
             
-            // Temporarily append clone to the document for rendering
-            clone.style.position = 'absolute';
-            clone.style.left = '-9999px';
-            document.body.appendChild(clone);
-            
-            // Create a new PDF document
+            // Create PDF document
             const doc = new jsPDF({
                 orientation: 'portrait',
                 unit: 'mm',
-                format: 'a4',
-                compress: true
+                format: 'a4'
             });
             
-            // A4 dimensions
-            const pageWidth = 210;
-            const pageHeight = 297;
-            const margin = 10; // margin in mm
-            const contentWidth = pageWidth - (margin * 2);
+            // Get container dimensions
+            const container = document.querySelector('.cv-container');
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
             
-            // Use html2canvas to capture the modified CV content
-            html2canvas(clone, {
-                scale: 2, // Higher scale for better quality
+            // A4 dimensions in mm (slightly reduced to ensure margins)
+            const pageWidth = 210 - 20; // A4 width minus margins
+            const pageHeight = 297 - 20; // A4 height minus margins
+            
+            console.log("Starting PDF generation process...");
+            
+            // Use html2canvas with explicit dimensions and simplified settings
+            html2canvas(container, {
+                scale: 1.5, // Increased scale for better quality
                 useCORS: true,
-                logging: false,
                 allowTaint: true,
-                backgroundColor: '#ffffff'
-            }).then(canvas => {
-                // Remove the clone from the document
-                document.body.removeChild(clone);
+                backgroundColor: '#ffffff',
+                logging: true, // Enable logging for debugging
+                width: containerWidth,
+                height: containerHeight,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: document.documentElement.offsetWidth,
+                windowHeight: document.documentElement.offsetHeight
+            }).then(function(canvas) {
+                console.log("Canvas generated successfully", canvas.width, canvas.height);
                 
-                // Calculate dimensions to maintain aspect ratio
-                const imgWidth = contentWidth;
-                const ratio = canvas.width / imgWidth;
-                const imgHeight = canvas.height / ratio;
-                
-                // Calculate number of pages needed
-                const totalPages = Math.ceil(imgHeight / (pageHeight - (margin * 2)));
-                
-                // Add each page of content
-                let heightLeft = imgHeight;
-                let position = 0;
-                
-                // First page
-                doc.addImage(
-                    canvas.toDataURL('image/jpeg', 1.0),
-                    'JPEG',
-                    margin,
-                    margin,
-                    imgWidth,
-                    imgHeight,
-                    undefined,
-                    'FAST'
-                );
-                heightLeft -= (pageHeight - (margin * 2));
-                
-                // Add additional pages if necessary
-                for (let i = 1; i < totalPages; i++) {
-                    position = -((pageHeight - (margin * 2)) * i);
-                    doc.addPage();
-                    doc.addImage(
-                        canvas.toDataURL('image/jpeg', 1.0),
-                        'JPEG',
-                        margin,
-                        margin,
-                        imgWidth,
-                        imgHeight,
-                        undefined,
-                        'FAST'
-                    );
+                try {
+                    // Get canvas as an image
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    
+                    // Calculate scaled dimensions to fit on A4
+                    const ratio = canvas.width / pageWidth;
+                    const scaledHeight = canvas.height / ratio;
+                    
+                    // Add to PDF (10mm margins on all sides)
+                    doc.addImage(imgData, 'JPEG', 10, 10, pageWidth, scaledHeight);
+                    
+                    // If content is taller than one page, add additional pages
+                    if (scaledHeight > pageHeight) {
+                        let remainingHeight = scaledHeight;
+                        let currentPosition = 0;
+                        
+                        // First page already added
+                        remainingHeight -= pageHeight;
+                        currentPosition += pageHeight;
+                        
+                        // Add more pages if needed
+                        while (remainingHeight > 0) {
+                            doc.addPage();
+                            doc.addImage(
+                                imgData, 
+                                'JPEG', 
+                                10, // x position
+                                10 - currentPosition, // y position (negative to show part of image)
+                                pageWidth, 
+                                scaledHeight
+                            );
+                            
+                            currentPosition += pageHeight;
+                            remainingHeight -= pageHeight;
+                        }
+                    }
+                    
+                    // Save the PDF
+                    doc.save('Mauricio_Inocencio_CV.pdf');
+                    console.log("PDF saved successfully");
+                } catch (error) {
+                    console.error("Error generating PDF from canvas:", error);
+                    alert("There was an error creating your PDF. Error details: " + error.message);
                 }
                 
-                // Save the PDF with a descriptive filename
-                doc.save('Mauricio_Inocencio_CV.pdf');
+                // Restore original theme and remove temporary class
+                document.documentElement.setAttribute('data-theme', originalTheme);
+                document.body.classList.remove('generating-pdf');
+                
+            }).catch(function(error) {
+                console.error("Error in html2canvas:", error);
+                alert("There was an error capturing your CV for PDF. Error details: " + error.message);
+                document.documentElement.setAttribute('data-theme', originalTheme);
+                document.body.classList.remove('generating-pdf');
             });
             
         } catch (error) {
-            console.error('Error generating PDF:', error);
-            alert('Could not generate PDF. Please make sure you have a modern browser with JavaScript enabled.');
+            console.error('Error in PDF generation process:', error);
+            alert('Could not generate PDF. Error details: ' + error.message);
         }
     };
-    
-    // Function to prepare the clone for PDF export
-    function preparePdfLayout(clone) {
-        // Ensure proper font sizes for PDF
-        const style = document.createElement('style');
-        style.textContent = `
-            * {
-                font-size: 10px !important;
-                line-height: 1.3 !important;
-            }
-            h1 {
-                font-size: 16px !important;
-                margin-bottom: 6px !important;
-            }
-            h2 {
-                font-size: 14px !important;
-                margin: 10px 0 5px !important;
-            }
-            h3 {
-                font-size: 12px !important;
-                margin: 8px 0 4px !important;
-            }
-            .job-title {
-                font-size: 12px !important;
-            }
-            .sidebar {
-                padding: 10px !important;
-            }
-            .main-content {
-                padding: 0 5px !important;
-            }
-            .cv-header {
-                padding-bottom: 10px !important;
-                margin-bottom: 10px !important;
-            }
-            .job {
-                margin-bottom: 10px !important;
-                padding-bottom: 5px !important;
-            }
-            ul li {
-                margin-bottom: 3px !important;
-            }
-            .project-card {
-                padding: 8px !important;
-                margin-bottom: 8px !important;
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-            }
-            .action-buttons-panel {
-                display: none !important;
-            }
-            .skill-bar-container {
-                height: 5px !important;
-                margin-top: 2px !important;
-            }
-            p {
-                margin-bottom: 3px !important;
-            }
-            .language-item {
-                margin-bottom: 5px !important;
-            }
-            .job-header {
-                margin-bottom: 2px !important;
-            }
-            .company, .date {
-                font-size: 11px !important;
-            }
-            .location {
-                margin-bottom: 4px !important;
-                font-size: 9px !important;
-            }
-            .social-links {
-                display: none !important;
-            }
-        `;
-        
-        clone.appendChild(style);
-        
-        // Optionally remove elements that aren't essential for the PDF
-        clone.querySelectorAll('.action-buttons-panel, .skip-link').forEach(el => {
-            el.remove();
-        });
-        
-        // Compact some sections to fit better
-        const additionalActivities = clone.querySelector('#activities-section');
-        if (additionalActivities) {
-            const sportsParagraph = additionalActivities.querySelector('p:nth-of-type(1)');
-            const interestsParagraph = additionalActivities.querySelector('p:nth-of-type(2)');
-            
-            if (sportsParagraph) {
-                sportsParagraph.style.fontSize = '8px';
-            }
-            
-            if (interestsParagraph) {
-                interestsParagraph.style.fontSize = '8px';
-            }
-        }
-        
-        return clone;
-    }
     
     if (downloadPdfButton) downloadPdfButton.addEventListener('click', downloadPdf);
     if (downloadPdfOldButton) downloadPdfOldButton.addEventListener('click', downloadPdf);
