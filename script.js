@@ -3,17 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     
-    // Initialize language
-    const savedLanguage = localStorage.getItem('language') || 'en';
-    document.documentElement.setAttribute('data-language', savedLanguage);
-    const languageSelect = document.getElementById('language-select');
-    if (languageSelect) {
-        languageSelect.value = savedLanguage;
-    }
-    
-    // Show the correct language content
-    showLanguageContent(savedLanguage);
-    
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
@@ -34,17 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         themeToggle.innerHTML = savedTheme === 'light' 
             ? '<i class="fas fa-moon"></i>' 
             : '<i class="fas fa-sun"></i>';
-    }
-    
-    // Language selector functionality
-    if (languageSelect) {
-        languageSelect.addEventListener('change', function() {
-            const selectedLanguage = this.value;
-            document.documentElement.setAttribute('data-language', selectedLanguage);
-            localStorage.setItem('language', selectedLanguage);
-            
-            showLanguageContent(selectedLanguage);
-        });
     }
     
     // Print button functionality
@@ -103,23 +81,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Function to show content based on selected language
-function showLanguageContent(language) {
-    // Hide all language content
-    document.querySelectorAll('[lang]').forEach(element => {
-        element.classList.add('hidden');
-    });
-    
-    // Show content for selected language
-    document.querySelectorAll(`[lang="${language}"]`).forEach(element => {
-        element.classList.remove('hidden');
-    });
-    
-    // If no content exists for this language, show English as fallback
-    if (document.querySelectorAll(`[lang="${language}"]:not(.hidden)`).length === 0) {
-        document.querySelectorAll('[lang="en"]').forEach(element => {
-            element.classList.remove('hidden');
-        });
-    }
-}
