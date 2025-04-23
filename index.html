@@ -3,63 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional CV of Mauricio Inocencio - Senior Project Manager & LEAN Portfolio Manager with expertise in the travel industry">
-    <meta name="keywords" content="CV, resume, project manager, LEAN portfolio, travel industry, Mauricio Inocencio">
-    <meta name="author" content="Mauricio Inocencio">
-    <meta name="robots" content="index, follow">
-    <title>CV - Mauricio Inocencio | Senior Project Manager & LEAN Portfolio Manager</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://via.placeholder.com/32x32" sizes="32x32">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Libraries for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>CV - Mauricio Inocencio</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        .cv-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        .cv-header {
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            margin-bottom: 30px;
+        }
+        
+        .name-title {
+            flex-grow: 1;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .job-title {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+        
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .main-content {
+            padding: 0 10px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 25px 0 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 15px 0 10px;
+        }
+        
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-bottom: 15px;
+        }
+        
+        ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        ul li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+            position: absolute;
+            left: 0;
+        }
+        
+        .job {
+            margin-bottom: 25px;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .date {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .location {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .languages {
+            margin-top: 25px;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .client-dept {
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cv-header {
+                flex-direction: column;
+                text-align: center;
+                grid-column: 1;
+            }
+            
+            .name-title {
+                margin-bottom: 15px;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Theme toggle button -->
-    <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">
-        <i class="fas fa-moon"></i>
-    </button>
-    
-    <!-- Language selector -->
-    <div class="language-selector">
-        <select id="language-select">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-        </select>
-    </div>
-    
-    <!-- Print button -->
-    <button id="print-btn" class="print-btn">
-        <span lang="en">Print CV</span>
-        <span lang="es" class="hidden">Imprimir CV</span>
-        <span lang="fr" class="hidden">Imprimer CV</span>
-    </button>
-    
-    <!-- Download PDF button -->
-    <button id="download-pdf" class="download-pdf">
-        <span lang="en">Download PDF</span>
-        <span lang="es" class="hidden">Descargar PDF</span>
-        <span lang="fr" class="hidden">Télécharger PDF</span>
-    </button>
-    
     <div class="cv-container">
         <header class="cv-header">
             <div class="name-title">
                 <h1>MAURICIO INOCENCIO TAPIA</h1>
-                <div class="job-title">
-                    <span lang="en">Senior Project Manager & LEAN Portfolio Manager</span>
-                    <span lang="es" class="hidden">Gerente de Proyectos Senior & Gerente de Portafolio LEAN</span>
-                    <span lang="fr" class="hidden">Chef de Projet Senior & Gestionnaire de Portefeuille LEAN</span>
-                </div>
+                <div class="job-title">Senior Project Manager & LEAN Portfolio Manager</div>
             </div>
             <div class="contact-info">
                 <p>+33 7 81 72 26 80</p>
@@ -71,16 +210,8 @@
         
         <aside class="sidebar">
             <section>
-                <h2>
-                    <span lang="en">SKILLS</span>
-                    <span lang="es" class="hidden">HABILIDADES</span>
-                    <span lang="fr" class="hidden">COMPÉTENCES</span>
-                </h2>
-                <h3>
-                    <span lang="en">Functional Skills</span>
-                    <span lang="es" class="hidden">Habilidades Funcionales</span>
-                    <span lang="fr" class="hidden">Compétences Fonctionnelles</span>
-                </h3>
+                <h2>SKILLS</h2>
+                <h3>Functional Skills</h3>
                 <ul>
                     <li>Comprehensive expertise in the travel/transport industry ecosystem</li>
                     <li>SAFe LEAN Portfolio Management certification and implementation</li>
@@ -89,11 +220,7 @@
                     <li>End-to-end process mastery across travel industry domains (Reservation, Inventory, Ticketing, Revenue Management, Dynamic Pricing, Customer Services, Loyalty Programs)</li>
                 </ul>
                 
-                <h3>
-                    <span lang="en">Technical Skills</span>
-                    <span lang="es" class="hidden">Habilidades Técnicas</span>
-                    <span lang="fr" class="hidden">Compétences Techniques</span>
-                </h3>
+                <h3>Technical Skills</h3>
                 <ul>
                     <li>Cloud Platforms (Azure), Business Intelligence (Power BI, Tableau), Office 365 suite</li>
                     <li>Database management (Oracle DB / SQL), Databricks analytics</li>
@@ -106,11 +233,7 @@
                     <li>Amadeus Altea Suite configuration and implementation</li>
                 </ul>
                 
-                <h3>
-                    <span lang="en">Personal Skills</span>
-                    <span lang="es" class="hidden">Habilidades Personales</span>
-                    <span lang="fr" class="hidden">Compétences Personnelles</span>
-                </h3>
+                <h3>Personal Skills</h3>
                 <ul>
                     <li>Exceptional negotiation capabilities with proven stakeholder influence</li>
                     <li>Self-directed professional with collaborative leadership approach</li>
@@ -120,90 +243,38 @@
             </section>
             
             <section class="languages">
-                <h2>
-                    <span lang="en">LANGUAGES</span>
-                    <span lang="es" class="hidden">IDIOMAS</span>
-                    <span lang="fr" class="hidden">LANGUES</span>
-                </h2>
+                <h2>LANGUAGES</h2>
                 <div class="language-item">
-                    <span>
-                        <span lang="en">Spanish</span>
-                        <span lang="es" class="hidden">Español</span>
-                        <span lang="fr" class="hidden">Espagnol</span>
-                    </span>
-                    <span>
-                        <span lang="en">Native</span>
-                        <span lang="es" class="hidden">Nativo</span>
-                        <span lang="fr" class="hidden">Langue Maternelle</span>
-                    </span>
+                    <span>Spanish</span>
+                    <span>Native</span>
                 </div>
                 <div class="language-item">
-                    <span>
-                        <span lang="en">English</span>
-                        <span lang="es" class="hidden">Inglés</span>
-                        <span lang="fr" class="hidden">Anglais</span>
-                    </span>
-                    <span>
-                        <span lang="en">Fluent</span>
-                        <span lang="es" class="hidden">Fluido</span>
-                        <span lang="fr" class="hidden">Courant</span>
-                    </span>
+                    <span>English</span>
+                    <span>Fluent</span>
                 </div>
                 <div class="language-item">
-                    <span>
-                        <span lang="en">French</span>
-                        <span lang="es" class="hidden">Francés</span>
-                        <span lang="fr" class="hidden">Français</span>
-                    </span>
-                    <span>
-                        <span lang="en">Fluent</span>
-                        <span lang="es" class="hidden">Fluido</span>
-                        <span lang="fr" class="hidden">Courant</span>
-                    </span>
+                    <span>French</span>
+                    <span>Fluent</span>
                 </div>
                 <div class="language-item">
-                    <span>
-                        <span lang="en">Portuguese</span>
-                        <span lang="es" class="hidden">Portugués</span>
-                        <span lang="fr" class="hidden">Portugais</span>
-                    </span>
-                    <span>
-                        <span lang="en">Fluent</span>
-                        <span lang="es" class="hidden">Fluido</span>
-                        <span lang="fr" class="hidden">Courant</span>
-                    </span>
+                    <span>Portuguese</span>
+                    <span>Fluent</span>
                 </div>
                 <div class="language-item">
-                    <span>
-                        <span lang="en">Italian</span>
-                        <span lang="es" class="hidden">Italiano</span>
-                        <span lang="fr" class="hidden">Italien</span>
-                    </span>
-                    <span>
-                        <span lang="en">Fluent</span>
-                        <span lang="es" class="hidden">Fluido</span>
-                        <span lang="fr" class="hidden">Courant</span>
-                    </span>
+                    <span>Italian</span>
+                    <span>Fluent</span>
                 </div>
             </section>
             
             <section>
-                <h2>
-                    <span lang="en">EDUCATION</span>
-                    <span lang="es" class="hidden">EDUCACIÓN</span>
-                    <span lang="fr" class="hidden">FORMATION</span>
-                </h2>
+                <h2>EDUCATION</h2>
                 <h3>Universidad Técnica Federico Santa Maria</h3>
                 <p>Computer Science Engineer (BAC+5)</p>
                 <p>1998-2004</p>
                 <p>Specialized in Distributed Systems and Project Management</p>
                 <p>Recipient of the prestigious "President of the Republic" scholarship</p>
                 
-                <h3>
-                    <span lang="en">Professional Certifications</span>
-                    <span lang="es" class="hidden">Certificaciones Profesionales</span>
-                    <span lang="fr" class="hidden">Certifications Professionnelles</span>
-                </h3>
+                <h3>Professional Certifications</h3>
                 <ul>
                     <li>LEAN Safe Methodology (2023)</li>
                     <li>Amadeus Altea Inventory Certification (2018)</li>
@@ -212,48 +283,28 @@
             </section>
             
             <section>
-                <h2>
-                    <span lang="en">ADDITIONAL ACTIVITIES</span>
-                    <span lang="es" class="hidden">ACTIVIDADES ADICIONALES</span>
-                    <span lang="fr" class="hidden">ACTIVITÉS SUPPLÉMENTAIRES</span>
-                </h2>
-                <h3>
-                    <span lang="en">Sports</span>
-                    <span lang="es" class="hidden">Deportes</span>
-                    <span lang="fr" class="hidden">Sports</span>
-                </h3>
+                <h2>ADDITIONAL ACTIVITIES</h2>
+                <h3>Sports</h3>
                 <p>Tennis, Rock climbing, Ping Pong, Aikido, Trekking, Kayaking, Spearfishing, Snorkeling</p>
                 
-                <h3>
-                    <span lang="en">Interests</span>
-                    <span lang="es" class="hidden">Intereses</span>
-                    <span lang="fr" class="hidden">Centres d'Intérêt</span>
-                </h3>
+                <h3>Interests</h3>
                 <p>Piano, Guitar, Drums, International Travel, Language Acquisition, Cultural Studies, IT Management, Software Development, Artificial Intelligence, Drone Piloting</p>
             </section>
         </aside>
         
         <main class="main-content">
             <section>
-                <h2>
-                    <span lang="en">PROFESSIONAL SUMMARY</span>
-                    <span lang="es" class="hidden">RESUMEN PROFESIONAL</span>
-                    <span lang="fr" class="hidden">RÉSUMÉ PROFESSIONNEL</span>
-                </h2>
+                <h2>PROFESSIONAL SUMMARY</h2>
                 <p>Results-driven Senior Project Manager and LEAN Portfolio Manager with extensive expertise in the travel industry. Adept at leveraging strategic project management methodologies, business process optimization, and transformational change management to deliver operational excellence and high-value solutions. Proven track record of successfully aligning technical implementations with business objectives across multinational environments.</p>
             </section>
             
             <section>
-                <h2>
-                    <span lang="en">PROFESSIONAL EXPERIENCE</span>
-                    <span lang="es" class="hidden">EXPERIENCIA PROFESIONAL</span>
-                    <span lang="fr" class="hidden">EXPÉRIENCE PROFESSIONNELLE</span>
-                </h2>
+                <h2>PROFESSIONAL EXPERIENCE</h2>
                 
                 <div class="job">
                     <div class="job-header">
                         <span class="company">Scalian SA – www.scalian.com</span>
-                        <span class="date">October 2024-<span lang="en">Present</span><span lang="es" class="hidden">Presente</span><span lang="fr" class="hidden">Présent</span></span>
+                        <span class="date">October 2024-Present</span>
                     </div>
                     <div class="location">Sophia Antipolis, France</div>
                     <h3>Service Delivery Manager</h3>
@@ -348,58 +399,5 @@
             </section>
         </main>
     </div>
-    
-    <!-- Load JavaScript files -->
-    <script src="translations.js"></script>
-    <script src="script.js"></script>
-    
-    <!-- Structured data for better SEO (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Mauricio Inocencio Tapia",
-      "jobTitle": "Senior Project Manager & LEAN Portfolio Manager",
-      "telephone": "+33 7 81 72 26 80",
-      "email": "mauriale@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Nice",
-        "addressCountry": "France"
-      },
-      "url": "https://mauriale.github.io/MyCV/",
-      "sameAs": [
-        "https://www.linkedin.com/in/mauricioinocencio"
-      ],
-      "knowsLanguage": [
-        "Spanish", "English", "French", "Portuguese", "Italian"
-      ],
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Universidad Técnica Federico Santa Maria",
-        "sameAs": "https://www.usm.cl/"
-      },
-      "workExperience": [
-        {
-          "@type": "OrganizationRole",
-          "roleName": "Service Delivery Manager",
-          "startDate": "2024-10",
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Scalian SA",
-            "sameAs": "https://www.scalian.com"
-          },
-          "workLocation": {
-            "@type": "Place",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Sophia Antipolis",
-              "addressCountry": "France"
-            }
-          }
-        }
-      ]
-    }
-    </script>
 </body>
 </html>
