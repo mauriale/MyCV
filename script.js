@@ -54,19 +54,75 @@ document.addEventListener('DOMContentLoaded', function() {
     if (printButton) printButton.addEventListener('click', printCV);
     if (printCvButton) printCvButton.addEventListener('click', printCV);
     
-    // PDF generation - completely new approach
+    // PDF generation using html2pdf.js
     const downloadPdfButton = document.getElementById('download-pdf');
     const downloadPdfOldButton = document.getElementById('download-pdf-old');
     
     const downloadPdf = function() {
-        // For browsers without proper PDF generation capability, just open a print dialog
-        // which allows saving as PDF through the browser's print interface
+        // Ensure we're in light mode for PDF generation
+        const originalTheme = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', 'light');
         
-        // Display a helpful message to the user
-        alert('Para obtener tu CV en PDF, usa la opción "Guardar como PDF" en el diálogo de impresión que aparecerá a continuación.');
+        // Add PDF generation class to body
+        document.body.classList.add('pdf-generation');
         
-        // Use the browser's built-in print functionality
-        window.print();
+        // Show loading indicator
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'pdf-loading';
+        loadingIndicator.innerHTML = '<div class="spinner"></div><p>Generando PDF...</p>';
+        document.body.appendChild(loadingIndicator);
+        
+        // Get the CV container
+        const element = document.querySelector('.cv-container');
+        
+        // Clone the element to modify it without affecting the original
+        const clone = element.cloneNode(true);
+        
+        // Apply PDF-specific styling
+        clone.classList.add('pdf-export');
+        
+        // Create a temporary container for the clone
+        const tempContainer = document.createElement('div');
+        tempContainer.style.position = 'absolute';
+        tempContainer.style.left = '-9999px';
+        tempContainer.style.top = '-9999px';
+        tempContainer.appendChild(clone);
+        document.body.appendChild(tempContainer);
+        
+        // Configure html2pdf options
+        const opt = {
+            margin: [10, 10, 10, 10],
+            filename: 'Mauricio_Inocencio_CV.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+                scale: 2, 
+                useCORS: true,
+                letterRendering: true,
+                scrollY: 0,
+                windowWidth: 1200,
+                logging: false
+            },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        
+        // Generate PDF
+        html2pdf().from(clone).set(opt).save().then(() => {
+            // Clean up
+            document.body.removeChild(tempContainer);
+            document.body.removeChild(loadingIndicator);
+            document.body.classList.remove('pdf-generation');
+            document.documentElement.setAttribute('data-theme', originalTheme);
+        }).catch(error => {
+            console.error('PDF generation failed:', error);
+            // Clean up even on error
+            document.body.removeChild(tempContainer);
+            document.body.removeChild(loadingIndicator);
+            document.body.classList.remove('pdf-generation');
+            document.documentElement.setAttribute('data-theme', originalTheme);
+            
+            // Show error message
+            alert('Hubo un problema al generar el PDF. Por favor intenta nuevamente o usa la función de impresión del navegador.');
+        });
     };
     
     if (downloadPdfButton) downloadPdfButton.addEventListener('click', downloadPdf);
