@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Mauricio Inocencio</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        .cv-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        .cv-header {
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            margin-bottom: 30px;
+        }
+        
+        .name-title {
+            flex-grow: 1;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .job-title {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+        
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .main-content {
+            padding: 0 10px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 25px 0 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 15px 0 10px;
+        }
+        
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-bottom: 15px;
+        }
+        
+        ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        ul li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+            position: absolute;
+            left: 0;
+        }
+        
+        .job {
+            margin-bottom: 25px;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .date {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        .location {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .languages {
+            margin-top: 25px;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cv-header {
+                flex-direction: column;
+                text-align: center;
+                grid-column: 1;
+            }
+            
+            .name-title {
+                margin-bottom: 15px;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="cv-header">
+            <div class="name-title">
+                <h1>MAURICIO INOCENCIO TAPIA</h1>
+                <div class="job-title">Senior Project Manager & LEAN Portfolio Manager</div>
+            </div>
+            <div class="contact-info">
+                <p>+33 7 81 72 26 80</p>
+                <p><a href="mailto:mauriale@gmail.com">mauriale@gmail.com</a></p>
+                <p>Nice, France</p>
+                <p><a href="https://fr.linkedin.com/in/mauricioinocencio" target="_blank">LinkedIn Profile</a></p>
+            </div>
+        </header>
+        
+        <aside class="sidebar">
+            <section>
+                <h2>SKILLS</h2>
+                <h3>Functional Skills</h3>
+                <ul>
+                    <li>Extensive understanding of the travel industry</li>
+                    <li>Safe LEAN Portfolio Management</li>
+                    <li>Project Management & Business process alignment</li>
+                    <li>Change management & Process Improvement</li>
+                    <li>End-to-end processes knowledge in travel industry (Inventory, Revenue Management, Dynamic Pricing, Customer Services, Loyalty Programs)</li>
+                </ul>
+                
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>Cloud Platforms, Power BI, Office 365</li>
+                    <li>Power Apps, Power Automate, Confluence, JIRA</li>
+                    <li>EDIFACT/XML Messaging, MQ Implementation</li>
+                    <li>Business Process Modelling, SOA, Governance IT</li>
+                    <li>LEAN, KPI implementation</li>
+                    <li>Agile methodologies (Scrum/XP), PMO, PPM, APM</li>
+                    <li>Security IT projects (SOC2, GDPR, IPA, DTIA, DPIA)</li>
+                    <li>Amadeus Altea Suite</li>
+                </ul>
+                
+                <h3>Personal Skills</h3>
+                <ul>
+                    <li>Strong negotiation capacity and influencing skills</li>
+                    <li>Proactive and autonomous with collaborative attitude</li>
+                    <li>Excellent presentation and organization skills</li>
+                    <li>Creative and accountable with strong interpersonal skills</li>
+                </ul>
+            </section>
+            
+            <section class="languages">
+                <h2>LANGUAGES</h2>
+                <div class="language-item">
+                    <span>Spanish</span>
+                    <span>Native</span>
+                </div>
+                <div class="language-item">
+                    <span>English</span>
+                    <span>Fluent</span>
+                </div>
+                <div class="language-item">
+                    <span>French</span>
+                    <span>Fluent</span>
+                </div>
+                <div class="language-item">
+                    <span>Portuguese</span>
+                    <span>Fluent</span>
+                </div>
+                <div class="language-item">
+                    <span>Italian</span>
+                    <span>Fluent</span>
+                </div>
+            </section>
+            
+            <section>
+                <h2>EDUCATION</h2>
+                <h3>Universidad Técnica Federico Santa Maria</h3>
+                <p>Computer Science Engineer (BAC+5)</p>
+                <p>1998-2004</p>
+                <p>Distributed Systems and Project Management</p>
+                <p>Winner of "President of the Republic" scholarship</p>
+                
+                <h3>Professional Certifications</h3>
+                <ul>
+                    <li>LEAN Safe Methodology (2023)</li>
+                    <li>Amadeus Altea Inventory Certification (2018)</li>
+                    <li>Project Management Professional (PMI-PMP) (2007)</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>ADDITIONAL ACTIVITIES</h2>
+                <h3>Sports</h3>
+                <p>Tennis, Rock climbing, Ping Pong, Aikido, Trekking, Kayaking</p>
+                
+                <h3>Hobbies</h3>
+                <p>Piano, Guitar, Drums, Travelling, Languages, Cultures, IT Management</p>
+            </section>
+        </aside>
+        
+        <main class="main-content">
+            <section>
+                <h2>OBJECTIVE</h2>
+                <p>Experienced Senior Project Manager and LEAN Portfolio Manager with extensive knowledge in the travel industry, seeking to leverage my expertise in project management, business process alignment, and change management to drive operational excellence and deliver high-value solutions.</p>
+            </section>
+            
+            <section>
+                <h2>PROFESSIONAL EXPERIENCE</h2>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Scalian SA – www.scalian.com</span>
+                        <span class="date">October 2024-Present</span>
+                    </div>
+                    <div class="location">Sophia Antipolis, France</div>
+                    <h3>Service Delivery Manager</h3>
+                    <ul>
+                        <li>[AMADEUS] – Service Delivery Manager & Technical Consultant | Dynamic Pricing</li>
+                        <li>Leading Amadeus' strategic pricing optimization services for Finnair</li>
+                        <li>Transforming airline business requirements into optimized system configurations</li>
+                        <li>Conducting system audits to identify performance improvement opportunities</li>
+                        <li>Delivering technical training on Revenue Management solutions</li>
+                        <li>Calibrating complex pricing systems according to airline-specific requirements</li>
+                        <li>Analyzing data and creating actionable reports for airline decision-makers</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Scalian SA</span>
+                        <span class="date">March 2022-September 2024</span>
+                    </div>
+                    <div class="location">Sophia Antipolis, France</div>
+                    <h3>DWS Lean Portfolio Manager</h3>
+                    <ul>
+                        <li>[AMADEUS] – Digital Workplace Services</li>
+                        <li>Responsible for aligning DWS developments with department strategy</li>
+                        <li>Optimized development and prioritization using LEAN philosophy</li>
+                        <li>Achieved departmental OKRs</li>
+                        <li>Trained Project Managers in LEAN Portfolio Management</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Kiveca SA – Airline Consulting</span>
+                        <span class="date">September 2021-December 2021</span>
+                    </div>
+                    <div class="location">Sophia Antipolis, France</div>
+                    <h3>Senior Project Manager / Airline Business Consultant</h3>
+                    <ul>
+                        <li>Client: LUXAIR Airlines (Luxembourg-based position)</li>
+                        <li>Led process optimization study focusing on Cloud migration</li>
+                        <li>Coordinated team organization and inter-team collaboration</li>
+                        <li>Managed Cloud migration project for Inventory system optimization</li>
+                    </ul>
+                </div>
