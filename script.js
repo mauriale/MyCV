@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (printButton) printButton.addEventListener('click', printCV);
     if (printCvButton) printCvButton.addEventListener('click', printCV);
     
-    // PDF download functionality - Improved for better formatting
+    // Improved PDF download functionality
     const downloadPdfButton = document.getElementById('download-pdf');
     const downloadPdfOldButton = document.getElementById('download-pdf-old');
     
@@ -62,30 +62,19 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const { jsPDF } = window.jspdf;
             
-            // Before generating PDF, we'll temporarily modify some styles for better PDF output
+            // Create a clone of the CV container to modify for PDF export
             const cvContainer = document.querySelector('.cv-container');
+            const clone = cvContainer.cloneNode(true);
             
-            // Store original styles to restore later
-            const originalStyles = {
-                fontSize: window.getComputedStyle(document.body).fontSize,
-                maxWidth: cvContainer.style.maxWidth,
-                padding: cvContainer.style.padding,
-                gap: cvContainer.style.gap
-            };
+            // Apply PDF-specific styles to the clone
+            preparePdfLayout(clone);
             
-            // Apply PDF-optimized styles
-            document.body.style.fontSize = '10px'; // Smaller font size for PDF
-            cvContainer.style.maxWidth = '100%';
-            cvContainer.style.padding = '10px';
-            cvContainer.style.gap = '15px';
+            // Temporarily append clone to the document for rendering
+            clone.style.position = 'absolute';
+            clone.style.left = '-9999px';
+            document.body.appendChild(clone);
             
-            // Hide action buttons and any other non-essential elements for PDF
-            const elementsToHideForPdf = document.querySelectorAll('.action-buttons-panel, .theme-toggle, .print-btn, .download-pdf');
-            elementsToHideForPdf.forEach(el => {
-                if (el) el.style.display = 'none';
-            });
-            
-            // Create a new PDF document - A4 size
+            // Create a new PDF document
             const doc = new jsPDF({
                 orientation: 'portrait',
                 unit: 'mm',
@@ -93,72 +82,173 @@ document.addEventListener('DOMContentLoaded', function() {
                 compress: true
             });
             
-            // Calculate optimal scale for content
-            const contentWidth = cvContainer.offsetWidth;
-            const contentHeight = cvContainer.offsetHeight;
-            const pageWidth = 210; // A4 width in mm
-            const pageHeight = 297; // A4 height in mm
-            const marginX = 10; // Horizontal margin in mm
-            const marginY = 10; // Vertical margin in mm
-            const availableWidth = pageWidth - (2 * marginX);
-            const availableHeight = pageHeight - (2 * marginY);
+            // A4 dimensions
+            const pageWidth = 210;
+            const pageHeight = 297;
+            const margin = 10; // margin in mm
+            const contentWidth = pageWidth - (margin * 2);
             
-            // Use html2canvas with proper scaling
-            html2canvas(cvContainer, {
+            // Use html2canvas to capture the modified CV content
+            html2canvas(clone, {
                 scale: 2, // Higher scale for better quality
                 useCORS: true,
                 logging: false,
                 allowTaint: true,
-                width: contentWidth,
-                height: contentHeight,
-                backgroundColor: '#FFFFFF'
+                backgroundColor: '#ffffff'
             }).then(canvas => {
-                // Calculate scale to fit content on one or two pages
-                const imgWidth = availableWidth;
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                // Remove the clone from the document
+                document.body.removeChild(clone);
                 
-                // Add first page
-                const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                doc.addImage(imgData, 'JPEG', marginX, marginY, imgWidth, imgHeight);
+                // Calculate dimensions to maintain aspect ratio
+                const imgWidth = contentWidth;
+                const ratio = canvas.width / imgWidth;
+                const imgHeight = canvas.height / ratio;
                 
-                // If content exceeds one page, add additional pages as needed
-                let remainingHeight = imgHeight - availableHeight;
-                let positionY = availableHeight;
+                // Calculate number of pages needed
+                const totalPages = Math.ceil(imgHeight / (pageHeight - (margin * 2)));
                 
-                while (remainingHeight > 0) {
-                    // Add a new page
+                // Add each page of content
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                // First page
+                doc.addImage(
+                    canvas.toDataURL('image/jpeg', 1.0),
+                    'JPEG',
+                    margin,
+                    margin,
+                    imgWidth,
+                    imgHeight,
+                    undefined,
+                    'FAST'
+                );
+                heightLeft -= (pageHeight - (margin * 2));
+                
+                // Add additional pages if necessary
+                for (let i = 1; i < totalPages; i++) {
+                    position = -((pageHeight - (margin * 2)) * i);
                     doc.addPage();
-                    
-                    // Calculate position for next section
-                    const offsetY = -(positionY - marginY);
-                    
-                    // Add image (same content but shifted up)
-                    doc.addImage(imgData, 'JPEG', marginX, offsetY, imgWidth, imgHeight);
-                    
-                    // Update for next page if needed
-                    positionY += availableHeight;
-                    remainingHeight -= availableHeight;
+                    doc.addImage(
+                        canvas.toDataURL('image/jpeg', 1.0),
+                        'JPEG',
+                        margin,
+                        margin,
+                        imgWidth,
+                        imgHeight,
+                        undefined,
+                        'FAST'
+                    );
                 }
                 
-                // Save the PDF
+                // Save the PDF with a descriptive filename
                 doc.save('Mauricio_Inocencio_CV.pdf');
-                
-                // Restore original styles
-                document.body.style.fontSize = originalStyles.fontSize;
-                cvContainer.style.maxWidth = originalStyles.maxWidth;
-                cvContainer.style.padding = originalStyles.padding;
-                cvContainer.style.gap = originalStyles.gap;
-                
-                // Restore visibility of hidden elements
-                elementsToHideForPdf.forEach(el => {
-                    if (el) el.style.display = '';
-                });
             });
+            
         } catch (error) {
             console.error('Error generating PDF:', error);
             alert('Could not generate PDF. Please make sure you have a modern browser with JavaScript enabled.');
         }
     };
+    
+    // Function to prepare the clone for PDF export
+    function preparePdfLayout(clone) {
+        // Ensure proper font sizes for PDF
+        const style = document.createElement('style');
+        style.textContent = `
+            * {
+                font-size: 10px !important;
+                line-height: 1.3 !important;
+            }
+            h1 {
+                font-size: 16px !important;
+                margin-bottom: 6px !important;
+            }
+            h2 {
+                font-size: 14px !important;
+                margin: 10px 0 5px !important;
+            }
+            h3 {
+                font-size: 12px !important;
+                margin: 8px 0 4px !important;
+            }
+            .job-title {
+                font-size: 12px !important;
+            }
+            .sidebar {
+                padding: 10px !important;
+            }
+            .main-content {
+                padding: 0 5px !important;
+            }
+            .cv-header {
+                padding-bottom: 10px !important;
+                margin-bottom: 10px !important;
+            }
+            .job {
+                margin-bottom: 10px !important;
+                padding-bottom: 5px !important;
+            }
+            ul li {
+                margin-bottom: 3px !important;
+            }
+            .project-card {
+                padding: 8px !important;
+                margin-bottom: 8px !important;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            .action-buttons-panel {
+                display: none !important;
+            }
+            .skill-bar-container {
+                height: 5px !important;
+                margin-top: 2px !important;
+            }
+            p {
+                margin-bottom: 3px !important;
+            }
+            .language-item {
+                margin-bottom: 5px !important;
+            }
+            .job-header {
+                margin-bottom: 2px !important;
+            }
+            .company, .date {
+                font-size: 11px !important;
+            }
+            .location {
+                margin-bottom: 4px !important;
+                font-size: 9px !important;
+            }
+            .social-links {
+                display: none !important;
+            }
+        `;
+        
+        clone.appendChild(style);
+        
+        // Optionally remove elements that aren't essential for the PDF
+        clone.querySelectorAll('.action-buttons-panel, .skip-link').forEach(el => {
+            el.remove();
+        });
+        
+        // Compact some sections to fit better
+        const additionalActivities = clone.querySelector('#activities-section');
+        if (additionalActivities) {
+            const sportsParagraph = additionalActivities.querySelector('p:nth-of-type(1)');
+            const interestsParagraph = additionalActivities.querySelector('p:nth-of-type(2)');
+            
+            if (sportsParagraph) {
+                sportsParagraph.style.fontSize = '8px';
+            }
+            
+            if (interestsParagraph) {
+                interestsParagraph.style.fontSize = '8px';
+            }
+        }
+        
+        return clone;
+    }
     
     if (downloadPdfButton) downloadPdfButton.addEventListener('click', downloadPdf);
     if (downloadPdfOldButton) downloadPdfOldButton.addEventListener('click', downloadPdf);
