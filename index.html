@@ -23,18 +23,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <!-- Theme toggle button -->
-    <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Action buttons panel -->
+    <div class="action-buttons-panel">
+        <button class="action-button" id="download-pdf" aria-label="Download CV as PDF" title="Download CV as PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="action-button" id="print-cv" aria-label="Print CV" title="Print CV">
+            <i class="fas fa-print"></i>
+        </button>
+        <button class="action-button" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <!-- Old buttons (hidden with CSS but kept for backward compatibility) -->
+    <button id="theme-toggle-old" class="theme-toggle" title="Toggle dark/light mode">
         <i class="fas fa-moon"></i>
     </button>
-    
-    <!-- Print button -->
     <button id="print-btn" class="print-btn">
         Print CV
     </button>
-    
-    <!-- Download PDF button -->
-    <button id="download-pdf" class="download-pdf">
+    <button id="download-pdf-old" class="download-pdf">
         Download PDF
     </button>
     
@@ -45,16 +57,30 @@
                 <div class="job-title">Senior Project Manager & LEAN Portfolio Manager</div>
             </div>
             <div class="contact-info">
-                <p>+33 7 81 72 26 80</p>
-                <p><a href="mailto:mauriale@gmail.com">mauriale@gmail.com</a></p>
-                <p>Nice, France</p>
-                <p><a href="https://www.linkedin.com/in/mauricioinocencio" target="_blank">LinkedIn Profile</a></p>
+                <p><i class="fas fa-phone-alt"></i> +33 7 81 72 26 80</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:mauriale@gmail.com">mauriale@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Nice, France</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mauricioinocencio" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/mauriale" target="_blank" rel="noopener noreferrer">GitHub Profile</a></p>
             </div>
         </header>
         
         <aside class="sidebar">
-            <section>
-                <h2>SKILLS</h2>
+            <!-- Social links -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/mauricioinocencio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/mauriale" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:mauriale@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <section id="skills-section" class="section">
+                <h2><i class="fas fa-cogs"></i> SKILLS</h2>
                 <h3>Functional Skills</h3>
                 <ul>
                     <li>Comprehensive expertise in the travel/transport industry ecosystem</li>
@@ -86,39 +112,60 @@
                 </ul>
             </section>
             
-            <section class="languages">
-                <h2>LANGUAGES</h2>
+            <section id="languages-section" class="languages section">
+                <h2><i class="fas fa-language"></i> LANGUAGES</h2>
                 <div class="language-item">
-                    <span>Spanish</span>
-                    <span>Native</span>
+                    <span class="language-name">Spanish</span>
+                    <span class="language-level">Native</span>
                 </div>
-                <div class="language-item">
-                    <span>English</span>
-                    <span>Fluent</span>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 100%"></div>
                 </div>
+                
                 <div class="language-item">
-                    <span>French</span>
-                    <span>Fluent</span>
+                    <span class="language-name">English</span>
+                    <span class="language-level">Fluent</span>
                 </div>
-                <div class="language-item">
-                    <span>Portuguese</span>
-                    <span>Fluent</span>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 95%"></div>
                 </div>
+                
                 <div class="language-item">
-                    <span>Italian</span>
-                    <span>Fluent</span>
+                    <span class="language-name">French</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 90%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span class="language-name">Portuguese</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 85%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span class="language-name">Italian</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 80%"></div>
                 </div>
             </section>
             
-            <section>
-                <h2>EDUCATION</h2>
+            <section id="education-section" class="section">
+                <h2><i class="fas fa-graduation-cap"></i> EDUCATION</h2>
                 <h3>Universidad Técnica Federico Santa Maria</h3>
                 <p>Computer Science Engineer (BAC+5)</p>
                 <p>1998-2004</p>
                 <p>Specialized in Distributed Systems and Project Management</p>
                 <p>Recipient of the prestigious "President of the Republic" scholarship</p>
-                
-                <h3>Professional Certifications</h3>
+            </section>
+            
+            <section id="certifications-section" class="section">
+                <h2><i class="fas fa-certificate"></i> CERTIFICATIONS</h2>
                 <ul>
                     <li>LEAN Safe Methodology (2023)</li>
                     <li>Amadeus Altea Inventory Certification (2018)</li>
@@ -126,8 +173,8 @@
                 </ul>
             </section>
             
-            <section>
-                <h2>ADDITIONAL ACTIVITIES</h2>
+            <section id="activities-section" class="section">
+                <h2><i class="fas fa-hiking"></i> ADDITIONAL ACTIVITIES</h2>
                 <h3>Sports</h3>
                 <p>Tennis, Rock climbing, Ping Pong, Aikido, Trekking, Kayaking, Spearfishing, Snorkeling</p>
                 
@@ -136,18 +183,46 @@
             </section>
         </aside>
         
-        <main class="main-content">
-            <section>
-                <h2>PROFESSIONAL SUMMARY</h2>
+        <main id="main-content" class="main-content">
+            <section id="summary-section" class="section">
+                <h2><i class="fas fa-user-tie"></i> PROFESSIONAL SUMMARY</h2>
                 <p>Results-driven Senior Project Manager and LEAN Portfolio Manager with extensive expertise in the travel industry. Adept at leveraging strategic project management methodologies, business process optimization, and transformational change management to deliver operational excellence and high-value solutions. Proven track record of successfully aligning technical implementations with business objectives across multinational environments.</p>
             </section>
             
-            <section>
-                <h2>PROFESSIONAL EXPERIENCE</h2>
+            <section id="projects-section" class="section">
+                <h2><i class="fas fa-project-diagram"></i> FEATURED PROJECTS</h2>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-chart-line"></i> Dynamic Pricing Optimization</h3>
+                    <p>Led the implementation of PROS Real Time Dynamic Pricing for multiple major airlines, enabling real-time fare adjustments based on market demand and competitor analysis.</p>
+                    <p><strong>Technologies:</strong> PROS Platform, Cloud Computing, Data Analytics</p>
+                    <p><strong>Impact:</strong> Increased revenue by optimizing fare structures and improving market responsiveness</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-cloud"></i> Cloud Migration Strategy</h3>
+                    <p>Developed and executed comprehensive cloud migration strategies for airline inventory and RMS systems, improving performance and scalability while reducing infrastructure costs.</p>
+                    <p><strong>Technologies:</strong> Azure Cloud, Databricks, Microservices Architecture</p>
+                    <p><strong>Impact:</strong> Enhanced system reliability with 99.9% uptime and reduced operational costs by 30%</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-users"></i> CRM Integration for Airline Loyalty</h3>
+                    <p>Managed the migration of a frequent flyer program to Siebel Loyalty CRM and subsequent integration of multi-airline customer data following mergers.</p>
+                    <p><strong>Technologies:</strong> Siebel CRM, Database Integration, ETL Processes</p>
+                    <p><strong>Impact:</strong> Unified customer experience across airlines and improved marketing campaign effectiveness</p>
+                </div>
+            </section>
+            
+            <section id="experience-section" class="section">
+                <h2><i class="fas fa-briefcase"></i> PROFESSIONAL EXPERIENCE</h2>
                 
                 <div class="job">
                     <div class="job-header">
-                        <span class="company">Scalian SA – www.scalian.com</span>
+                        <span class="company">
+                            <img src="https://media.licdn.com/dms/image/C4D0BAQEOtCwehg8P6g/company-logo_200_200/0/1630580212306/scalian_logo?e=1719792000&v=beta&t=3r8Fa9dFIkNdBfuLTVWG2fI9l6fVsn1Y89K2DTzEYxM" alt="Scalian Logo" class="company-logo">
+                            Scalian SA – www.scalian.com
+                        </span>
                         <span class="date">October 2024-Present</span>
                     </div>
                     <div class="location">Sophia Antipolis, France</div>
@@ -165,7 +240,10 @@
                 
                 <div class="job">
                     <div class="job-header">
-                        <span class="company">Scalian SA – www.scalian.com</span>
+                        <span class="company">
+                            <img src="https://media.licdn.com/dms/image/C4D0BAQEOtCwehg8P6g/company-logo_200_200/0/1630580212306/scalian_logo?e=1719792000&v=beta&t=3r8Fa9dFIkNdBfuLTVWG2fI9l6fVsn1Y89K2DTzEYxM" alt="Scalian Logo" class="company-logo">
+                            Scalian SA – www.scalian.com
+                        </span>
                         <span class="date">March 2022-September 2024</span>
                     </div>
                     <div class="location">Sophia Antipolis, France</div>
@@ -181,7 +259,10 @@
                 
                 <div class="job">
                     <div class="job-header">
-                        <span class="company">Kiveca SA – Airline Consulting – https://fr.kiveca.eu/ – https://www.crunchbase.com/organization/kiveca</span>
+                        <span class="company">
+                            <img src="https://media.licdn.com/dms/image/C4E0BAQH9BH6xmrwCvQ/company-logo_200_200/0/1630629171342?e=1719792000&v=beta&t=5G4FmGgMJ4RnDz30ThQyYAZMKIcR-SmzVIfCNgK8VBU" alt="Kiveca Logo" class="company-logo">
+                            Kiveca SA – Airline Consulting – https://fr.kiveca.eu/ 
+                        </span>
                         <span class="date">September 2021-December 2021</span>
                     </div>
                     <div class="location">Sophia Antipolis, France</div>
@@ -196,7 +277,10 @@
                 
                 <div class="job">
                     <div class="job-header">
-                        <span class="company">Conztanz SA – Airline Consulting – https://www.crunchbase.com/organization/conztanz</span>
+                        <span class="company">
+                            <img src="https://media.licdn.com/dms/image/C4D0BAQHCIJwRUXADSg/company-logo_200_200/0/1630539919544/conztanz_logo?e=1719792000&v=beta&t=JkQpMbNu6I7VQ8WKhK1Ys1oqTZ5jD-i2W7w2yMZVz3I" alt="Conztanz Logo" class="company-logo">
+                            Conztanz SA – Airline Consulting
+                        </span>
                         <span class="date">September 2015-December 2020</span>
                     </div>
                     <div class="location">Valbonne, France</div>
@@ -225,7 +309,10 @@
                 
                 <div class="job">
                     <div class="job-header">
-                        <span class="company">LATAM Airlines Group – www.latam.com</span>
+                        <span class="company">
+                            <img src="https://media.licdn.com/dms/image/D4E0BAQGrBl4k0Fn0Qw/company-logo_200_200/0/1704495315351/latamairlinesgroup_logo?e=1719792000&v=beta&t=e1-f-YfuNXHR1KlJlm9MQq5dRtAGnqIbZDZjSwRx4H8" alt="LATAM Airlines Logo" class="company-logo">
+                            LATAM Airlines Group – www.latam.com
+                        </span>
                         <span class="date">2007-2014</span>
                     </div>
                     <div class="location">Santiago, Chile</div>
@@ -263,7 +350,8 @@
       },
       "url": "https://mauriale.github.io/MyCV/",
       "sameAs": [
-        "https://www.linkedin.com/in/mauricioinocencio"
+        "https://www.linkedin.com/in/mauricioinocencio",
+        "https://github.com/mauriale"
       ],
       "knowsLanguage": [
         "Spanish", "English", "French", "Portuguese", "Italian"
