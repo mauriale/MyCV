@@ -202,27 +202,11 @@ ul li::before {
     transform: scale(1.1);
 }
 
-/* Language selector */
-.language-selector {
-    position: fixed;
-    top: 20px;
-    right: 70px;
-    z-index: 999;
-}
-
-.language-selector select {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-
 /* Print button */
 .print-btn {
     position: fixed;
     top: 20px;
-    right: 170px;
+    right: 80px;
     z-index: 999;
     background-color: var(--secondary-color);
     color: white;
@@ -241,7 +225,7 @@ ul li::before {
 .download-pdf {
     position: fixed;
     top: 20px;
-    right: 270px;
+    right: 170px;
     z-index: 999;
     background-color: var(--primary-color);
     color: white;
@@ -258,7 +242,7 @@ ul li::before {
 
 /* Print styles */
 @media print {
-    .theme-toggle, .language-selector, .print-btn, .download-pdf {
+    .theme-toggle, .print-btn, .download-pdf {
         display: none;
     }
     
@@ -310,19 +294,14 @@ ul li::before {
         right: 10px;
     }
     
-    .language-selector {
-        top: 10px;
-        right: 60px;
-    }
-    
     .print-btn {
         top: 10px;
-        right: 140px;
+        right: 70px;
     }
     
     .download-pdf {
         top: 10px;
-        right: 220px;
+        right: 160px;
     }
 }
 
@@ -334,8 +313,4 @@ ul li::before {
 
 .cv-container {
     animation: fadeIn 0.8s ease-in-out;
-}
-
-.hidden {
-    display: none !important;
 }
