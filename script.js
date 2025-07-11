@@ -1,4 +1,204 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize language
+    const savedLanguage = getCurrentLanguage();
+    setLanguage(savedLanguage);
+    
+    // Update all translatable elements
+    function updatePageLanguage() {
+        const lang = getCurrentLanguage();
+        
+        // Update HTML lang attribute
+        document.documentElement.setAttribute('lang', lang);
+        
+        // Update all elements with data-i18n attribute
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = t(key);
+            if (element.tagName === 'INPUT' || element.tagName === 'BUTTON') {
+                if (element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                } else if (element.hasAttribute('value')) {
+                    element.value = translation;
+                } else if (element.hasAttribute('title')) {
+                    element.title = translation;
+                }
+            } else {
+                element.textContent = translation;
+            }
+        });
+        
+        // Update aria-labels
+        document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+            const key = element.getAttribute('data-i18n-aria');
+            element.setAttribute('aria-label', t(key));
+        });
+        
+        // Update titles
+        document.querySelectorAll('[data-i18n-title]').forEach(element => {
+            const key = element.getAttribute('data-i18n-title');
+            element.setAttribute('title', t(key));
+        });
+        
+        // Update page title
+        document.title = lang === 'fr' 
+            ? 'CV - Mauricio Inocencio | Senior Project Manager & LEAN Portfolio Manager'
+            : 'CV - Mauricio Inocencio | Senior Project Manager & LEAN Portfolio Manager';
+        
+        // Update specific text content that needs special handling
+        updateSpecificContent();
+    }
+    
+    // Update content that requires special handling
+    function updateSpecificContent() {
+        const lang = getCurrentLanguage();
+        
+        // Update job title
+        const jobTitleElement = document.querySelector('.job-title');
+        if (jobTitleElement) {
+            jobTitleElement.textContent = t('jobTitle');
+        }
+        
+        // Update professional summary
+        const summaryText = document.querySelector('#summary-section p');
+        if (summaryText) {
+            summaryText.textContent = t('professionalSummaryText');
+        }
+        
+        // Update section titles
+        document.querySelectorAll('h2').forEach(h2 => {
+            const icon = h2.querySelector('i');
+            const iconHtml = icon ? icon.outerHTML + ' ' : '';
+            
+            if (h2.closest('#skills-section')) {
+                h2.innerHTML = iconHtml + t('skills');
+            } else if (h2.closest('#languages-section')) {
+                h2.innerHTML = iconHtml + t('languages');
+            } else if (h2.closest('#education-section')) {
+                h2.innerHTML = iconHtml + t('education');
+            } else if (h2.closest('#certifications-section')) {
+                h2.innerHTML = iconHtml + t('certifications');
+            } else if (h2.closest('#activities-section')) {
+                h2.innerHTML = iconHtml + t('additionalActivities');
+            } else if (h2.closest('#summary-section')) {
+                h2.innerHTML = iconHtml + t('professionalSummary');
+            } else if (h2.closest('#projects-section')) {
+                h2.innerHTML = iconHtml + t('featuredProjects');
+            } else if (h2.closest('#experience-section')) {
+                h2.innerHTML = iconHtml + t('professionalExperience');
+            }
+        });
+        
+        // Update h3 titles
+        document.querySelectorAll('h3').forEach(h3 => {
+            const text = h3.textContent.trim();
+            if (text === 'Functional Skills' || text === 'Compétences Fonctionnelles') {
+                h3.textContent = t('functionalSkills');
+            } else if (text === 'Technical Skills' || text === 'Compétences Techniques') {
+                h3.textContent = t('technicalSkills');
+            } else if (text === 'Personal Skills' || text === 'Compétences Personnelles') {
+                h3.textContent = t('personalSkills');
+            } else if (text === 'Sports') {
+                h3.textContent = t('sports');
+            } else if (text === 'Interests' || text === 'Intérêts') {
+                h3.textContent = t('interests');
+            }
+        });
+        
+        // Update language names and levels
+        document.querySelectorAll('.language-name').forEach(span => {
+            const text = span.textContent.trim();
+            if (text === 'Spanish' || text === 'Espagnol') {
+                span.textContent = t('spanish');
+            } else if (text === 'English' || text === 'Anglais') {
+                span.textContent = t('english');
+            } else if (text === 'French' || text === 'Français') {
+                span.textContent = t('french');
+            } else if (text === 'Portuguese' || text === 'Portugais') {
+                span.textContent = t('portuguese');
+            } else if (text === 'Italian' || text === 'Italien') {
+                span.textContent = t('italian');
+            }
+        });
+        
+        document.querySelectorAll('.language-level').forEach(span => {
+            const text = span.textContent.trim();
+            if (text === 'Native' || text === 'Langue maternelle') {
+                span.textContent = t('native');
+            } else if (text === 'Fluent' || text === 'Courant') {
+                span.textContent = t('fluent');
+            }
+        });
+        
+        // Update dates
+        document.querySelectorAll('.date').forEach(span => {
+            const text = span.textContent;
+            if (text.includes('Present')) {
+                span.textContent = text.replace('Present', t('present'));
+            } else if (text.includes('Présent')) {
+                span.textContent = text.replace('Présent', t('present'));
+            }
+        });
+        
+        // Update education content
+        const educationSection = document.querySelector('#education-section ul');
+        if (educationSection) {
+            const items = educationSection.querySelectorAll('li');
+            if (items[0]) items[0].textContent = t('computerScienceEngineer');
+            if (items[2]) items[2].textContent = t('specializedIn');
+            if (items[3]) items[3].textContent = t('scholarship');
+        }
+        
+        // Update project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            const title = card.querySelector('.project-title');
+            if (title) {
+                const icon = title.querySelector('i');
+                const iconHtml = icon ? icon.outerHTML + ' ' : '';
+                const titleText = title.textContent.trim();
+                
+                if (titleText.includes('Dynamic Pricing') || titleText.includes('Tarification Dynamique')) {
+                    title.innerHTML = iconHtml + t('dynamicPricingOptimization');
+                } else if (titleText.includes('Cloud Migration') || titleText.includes('Migration Cloud')) {
+                    title.innerHTML = iconHtml + t('cloudMigrationStrategy');
+                } else if (titleText.includes('CRM Integration') || titleText.includes('Intégration CRM')) {
+                    title.innerHTML = iconHtml + t('crmIntegration');
+                }
+            }
+            
+            // Update Technologies and Impact labels
+            card.querySelectorAll('strong').forEach(strong => {
+                const text = strong.textContent;
+                if (text === 'Technologies:') {
+                    strong.textContent = t('technologies') + ':';
+                } else if (text === 'Impact:') {
+                    strong.textContent = t('impact') + ':';
+                }
+            });
+        });
+        
+        // Update PDF loading message
+        const loadingP = document.querySelector('.pdf-loading p');
+        if (loadingP) {
+            loadingP.textContent = t('generatingPDF');
+        }
+        
+        // Update skip link
+        const skipLink = document.querySelector('.skip-link');
+        if (skipLink) {
+            skipLink.textContent = t('skipToContent');
+        }
+        
+        // Update links text
+        document.querySelectorAll('a').forEach(link => {
+            const text = link.textContent.trim();
+            if (text === 'LinkedIn Profile' || text === 'Profil LinkedIn') {
+                link.textContent = t('linkedinProfile');
+            } else if (text === 'GitHub Profile' || text === 'Profil GitHub') {
+                link.textContent = t('githubProfile');
+            }
+        });
+    }
+    
     // Initialize theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -43,6 +243,28 @@ document.addEventListener('DOMContentLoaded', function() {
     if (themeToggleOld) themeToggleOld.addEventListener('click', toggleTheme);
     if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
     
+    // Language toggle functionality
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+        languageToggle.addEventListener('click', function() {
+            const currentLang = getCurrentLanguage();
+            const newLang = currentLang === 'en' ? 'fr' : 'en';
+            setLanguage(newLang);
+            updatePageLanguage();
+            
+            // Update button text
+            this.innerHTML = newLang === 'en' 
+                ? '<i class="fas fa-globe"></i> FR' 
+                : '<i class="fas fa-globe"></i> EN';
+        });
+        
+        // Set initial language button state
+        const currentLang = getCurrentLanguage();
+        languageToggle.innerHTML = currentLang === 'en' 
+            ? '<i class="fas fa-globe"></i> FR' 
+            : '<i class="fas fa-globe"></i> EN';
+    }
+    
     // Handle both print buttons
     const printButton = document.getElementById('print-btn');
     const printCvButton = document.getElementById('print-cv');
@@ -62,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading indicator
         const loadingIndicator = document.createElement('div');
         loadingIndicator.className = 'pdf-loading';
-        loadingIndicator.innerHTML = '<div class="spinner"></div><p>Generando PDF...</p>';
+        loadingIndicator.innerHTML = `<div class="spinner"></div><p>${t('generatingPDF')}</p>`;
         document.body.appendChild(loadingIndicator);
         
         try {
@@ -159,7 +381,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 // Create and download the PDF
-                pdfMake.createPdf(docDefinition).download("Mauricio_Inocencio_CV.pdf");
+                const lang = getCurrentLanguage();
+                const filename = lang === 'fr' 
+                    ? "Mauricio_Inocencio_CV_FR.pdf" 
+                    : "Mauricio_Inocencio_CV.pdf";
+                pdfMake.createPdf(docDefinition).download(filename);
                 
             } catch (imgError) {
                 console.error('Error capturing image:', imgError);
@@ -174,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error in PDF generation:', error);
-            alert('Hubo un problema al generar el PDF. Por favor intenta utilizar la función de impresión del navegador.');
+            alert(t('pdfError'));
         } finally {
             // Clean up
             document.body.classList.remove('generating-pdf');
@@ -225,6 +451,14 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             toggleTheme();
         }
+        
+        // Alt+L for toggle language
+        if (e.altKey && e.key === 'l') {
+            e.preventDefault();
+            if (languageToggle) {
+                languageToggle.click();
+            }
+        }
     });
     
     // Ensure external links open in new tabs and have proper attributes
@@ -248,5 +482,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 mainContent.focus();
             }
         });
+    }
+    
+    // Initial page language update
+    updatePageLanguage();
+    
+    // Check URL parameters for language
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam && (langParam === 'en' || langParam === 'fr')) {
+        setLanguage(langParam);
+        updatePageLanguage();
+        if (languageToggle) {
+            languageToggle.innerHTML = langParam === 'en' 
+                ? '<i class="fas fa-globe"></i> FR' 
+                : '<i class="fas fa-globe"></i> EN';
+        }
     }
 });
