@@ -74,7 +74,7 @@ const translations = {
     },
     fr: {
         // Header
-        jobTitle: "Senior Project Manager & LEAN Portfolio Manager",
+        jobTitle: "Chef de Projet SI Senior - Spécialiste Transformation Digitale Finance",
         phone: "+33 7 81 72 26 80",
         location: "Nice, France",
         linkedinProfile: "Profil LinkedIn",
@@ -118,12 +118,12 @@ const translations = {
         interests: "Intérêts",
         
         // Professional Summary
-        professionalSummaryText: "Chef de Projet Senior et LEAN Portfolio Manager axé sur les résultats avec une expertise approfondie dans l'industrie du transport aérien. Expert dans l'exploitation de méthodologies stratégiques de gestion de projet, l'optimisation des processus métiers et la gestion du changement transformationnel pour offrir l'excellence opérationnelle et des solutions à haute valeur ajoutée. Historique prouvé d'alignement réussi des implémentations techniques avec les objectifs commerciaux dans des environnements multinationaux.",
+        professionalSummaryText: "Chef de Projet SI Senior avec plus de 15 ans d'expérience dans la transformation digitale et l'optimisation des processus métiers. Expert en gestion de projets complexes d'intégration de systèmes d'information, avec une forte orientation sur les processus financiers, la sécurité des données et l'innovation technologique (IA, automatisation, RPA). Reconnu pour sa capacité à aligner les implémentations techniques avec les objectifs stratégiques, tout en pilotant le changement organisationnel dans des environnements multinationaux.",
         
         // Featured Projects
-        dynamicPricingOptimization: "Optimisation de la Tarification Dynamique",
-        cloudMigrationStrategy: "Stratégie de Migration Cloud",
-        crmIntegration: "Intégration CRM pour la Fidélité Aérienne",
+        dynamicPricingOptimization: "Optimisation des Processus Financiers et Tarification Dynamique",
+        cloudMigrationStrategy: "Migration Cloud et Modernisation des SI",
+        crmIntegration: "Intégration ERP et Systèmes de Gestion Client",
         technologies: "Technologies",
         impact: "Impact",
         
@@ -131,11 +131,11 @@ const translations = {
         present: "Présent",
         
         // Job titles
-        serviceDeliveryManager: "Service Delivery Manager",
+        serviceDeliveryManager: "Service Delivery Manager - Transformation Digitale",
         leanPortfolioManager: "DWS Lean Portfolio Manager",
-        seniorProjectManager: "Chef de Projet Senior",
-        airlineBusinessConsultant: "Consultant Business Aérien",
-        projectPortfolioManager: "Gestionnaire de Portefeuille de Projets - RMS / Tarification / Fidélité",
+        seniorProjectManager: "Chef de Projet Senior SI",
+        airlineBusinessConsultant: "Consultant Business - Systèmes d'Information",
+        projectPortfolioManager: "Gestionnaire de Portefeuille de Projets - Systèmes Financiers",
         
         // PDF generation
         generatingPDF: "Génération du PDF...",
