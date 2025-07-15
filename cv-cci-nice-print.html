@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Mauricio Inocencio | CCI Nice</title>
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #000;
+            background: white;
+        }
+        
+        /* Container for A4/Letter size */
+        .cv-container {
+            width: 210mm;
+            min-height: 279mm;
+            margin: 0 auto;
+            padding: 10mm;
+            display: grid;
+            grid-template-columns: 65mm 1fr;
+            gap: 8mm;
+        }
+        
+        /* Header spanning both columns */
+        .cv-header {
+            grid-column: span 2;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 3mm;
+            margin-bottom: 5mm;
+        }
+        
+        .cv-header h1 {
+            font-size: 18pt;
+            color: #2c3e50;
+            margin-bottom: 2mm;
+        }
+        
+        .job-title {
+            font-size: 12pt;
+            color: #3498db;
+            margin-bottom: 3mm;
+        }
+        
+        .contact-info {
+            font-size: 9pt;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8mm;
+        }
+        
+        .contact-info span {
+            white-space: nowrap;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: #f8f8f8;
+            padding: 5mm;
+            font-size: 9pt;
+        }
+        
+        .sidebar h2 {
+            font-size: 11pt;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1mm;
+            margin-bottom: 3mm;
+        }
+        
+        .sidebar h3 {
+            font-size: 10pt;
+            color: #3498db;
+            margin: 3mm 0 2mm;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 1.5mm;
+            padding-left: 3mm;
+            position: relative;
+            font-size: 8.5pt;
+            line-height: 1.2;
+        }
+        
+        .sidebar li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        /* Languages */
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1mm;
+            font-size: 9pt;
+        }
+        
+        .skill-bar-container {
+            height: 3mm;
+            background: #e0e0e0;
+            margin-bottom: 2mm;
+        }
+        
+        .skill-bar {
+            height: 100%;
+            background: #3498db;
+        }
+        
+        /* Main content */
+        .main-content {
+            padding: 0 2mm;
+        }
+        
+        .main-content h2 {
+            font-size: 11pt;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1mm;
+            margin: 4mm 0 3mm;
+        }
+        
+        .main-content h3 {
+            font-size: 10pt;
+            color: #2c3e50;
+            margin: 3mm 0 2mm;
+        }
+        
+        .main-content p {
+            font-size: 9pt;
+            text-align: justify;
+            margin-bottom: 3mm;
+        }
+        
+        /* Projects */
+        .project-card {
+            background: #f8f8f8;
+            padding: 3mm;
+            margin-bottom: 3mm;
+            page-break-inside: avoid;
+        }
+        
+        .project-card h3 {
+            font-size: 9.5pt;
+            color: #2c3e50;
+            margin-bottom: 1mm;
+        }
+        
+        .project-card p {
+            font-size: 8.5pt;
+            margin-bottom: 1mm;
+            line-height: 1.2;
+        }
+        
+        /* Experience */
+        .job {
+            margin-bottom: 4mm;
+            page-break-inside: avoid;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1mm;
+        }
+        
+        .company {
+            font-weight: bold;
+            font-size: 9.5pt;
+            color: #2c3e50;
+        }
+        
+        .date {
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        .job h3 {
+            font-size: 9.5pt;
+            color: #3498db;
+            margin: 1mm 0;
+        }
+        
+        .job h4 {
+            font-size: 9pt;
+            color: #3498db;
+            margin: 2mm 0 1mm;
+            font-style: italic;
+        }
+        
+        .job em {
+            font-size: 8.5pt;
+            color: #666;
+        }
+        
+        .job ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .job li {
+            font-size: 8.5pt;
+            margin-bottom: 1mm;
+            padding-left: 3mm;
+            position: relative;
+            line-height: 1.2;
+        }
+        
+        .job li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        /* Hobbies */
+        .hobbies ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .hobbies li {
+            font-size: 8.5pt;
+            margin-bottom: 1mm;
+            padding-left: 3mm;
+            position: relative;
+        }
+        
+        .hobbies li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        /* Print specific */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .cv-container {
+                width: 100%;
+                min-height: auto;
+                padding: 8mm;
+                margin: 0;
+            }
+            
+            .project-card,
+            .job {
+                page-break-inside: avoid;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+        
+        @page {
+            size: letter;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="cv-header">
+            <h1>MAURICIO INOCENCIO TAPIA</h1>
+            <div class="job-title">Chef de Projet SI Senior - Expert Transformation Digitale</div>
+            <div class="contact-info">
+                <span>📧 mauriale@gmail.com</span>
+                <span>📱 +33 7 81 72 26 80</span>
+                <span>📍 Nice, France</span>
+                <span>🔗 linkedin.com/in/mauricioinocencio</span>
+                <span>💻 github.com/mauriale</span>
+            </div>
+        </header>
+        
+        <aside class="sidebar">
+            <section>
+                <h2>COMPÉTENCES</h2>
+                
+                <h3>Fonctionnelles</h3>
+                <ul>
+                    <li>Transformation digitale SI</li>
+                    <li>Gestion projets internationaux</li>
+                    <li>Optimisation processus métiers</li>
+                    <li>Intégration systèmes/migration</li>
+                    <li>IA, automatisation, RPA</li>
+                    <li>Sécurité données (GDPR, SOC2)</li>
+                    <li>Conduite du changement</li>
+                </ul>
+                
+                <h3>Techniques</h3>
+                <ul>
+                    <li><strong>BDD:</strong> SQL Server, Oracle, Databricks</li>
+                    <li><strong>Dev:</strong> SQL, Python, XML/EDIFACT</li>
+                    <li><strong>BI:</strong> Power BI, Tableau</li>
+                    <li><strong>Auto:</strong> Power Apps/Automate</li>
+                    <li><strong>Cloud:</strong> Azure, architectures natives</li>
+                    <li><strong>Outils:</strong> Confluence, JIRA, O365</li>
+                    <li><strong>Méthodes:</strong> Agile, LEAN, PMO</li>
+                    <li><strong>Archi:</strong> SOA, API REST, microservices</li>
+                </ul>
+                
+                <h3>Personnelles</h3>
+                <ul>
+                    <li>Autonomie et rigueur</li>
+                    <li>Intégrité, intérêt général</li>
+                    <li>Écoute et orientation solution</li>
+                    <li>Gestion des priorités</li>
+                    <li>Aisance relationnelle</li>
+                    <li>Leadership du changement</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>LANGUES</h2>
+                <div class="language-item">
+                    <span>Espagnol</span>
+                    <span>Maternel</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 100%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span>Anglais</span>
+                    <span>Courant</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 95%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span>Français</span>
+                    <span>Courant</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 90%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span>Portugais</span>
+                    <span>Courant</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 85%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span>Italien</span>
+                    <span>Courant</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 80%"></div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>FORMATION</h2>
+                <h3>Ingénieur Informatique</h3>
+                <ul>
+                    <li>Universidad Técnica FSM (BAC+5)</li>
+                    <li>Systèmes Distribués & Gestion Projets</li>
+                    <li>Boursier "Président République"</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>CERTIFICATIONS</h2>
+                <ul>
+                    <li>PMP (PMI) - 2024</li>
+                    <li>LEAN Safe - 2023</li>
+                    <li>Amadeus Altea - 2018</li>
+                </ul>
+            </section>
+            
+            <section class="hobbies">
+                <h2>INTÉRÊTS</h2>
+                <ul>
+                    <li>Drones, photographie aérienne</li>
+                    <li>Chasse sous-marine, aikido</li>
+                    <li>Voyages, langues, cultures</li>
+                    <li>Piano, guitare, philosophie</li>
+                </ul>
+            </section>
+        </aside>
+        
+        <main class="main-content">
+            <section>
+                <h2>PROFIL</h2>
+                <p>Chef de Projet SI Senior avec 15+ ans d'expérience en transformation digitale dans l'industrie du transport aérien. Expert en intégration de systèmes critiques, optimisation des processus et conduite du changement. Passionné par l'innovation (IA, RPA) et reconnu pour aligner solutions techniques et objectifs stratégiques.</p>
+            </section>
+            
+            <section>
+                <h2>PROJETS MARQUANTS</h2>
+                
+                <div class="project-card">
+                    <h3>Migration Cloud & Modernisation SI</h3>
+                    <p>Pilotage migrations cloud systèmes critiques (inventaire, revenue management)</p>
+                    <p><strong>Tech:</strong> Azure, Databricks, Microservices | <strong>Impact:</strong> 99.9% dispo, -30% coûts</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Tarification Dynamique IA</h3>
+                    <p>Implémentation PROS Dynamic Pricing pour compagnies majeures (Lufthansa, TAP)</p>
+                    <p><strong>Tech:</strong> Machine Learning, Analytics | <strong>Impact:</strong> Optimisation revenue</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Sécurité Données - Projet National</h3>
+                    <p>Gestion projet API-PNR Ministère Intérieur, conformité 100+ compagnies</p>
+                    <p><strong>Tech:</strong> EDIFACT, Protocoles sécurisés | <strong>Impact:</strong> Zéro incident</p>
+                </div>
+            </section>
+            
+            <section>
+                <h2>EXPÉRIENCE</h2>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Scalian SA - Sophia Antipolis</span>
+                        <span class="date">2022-Présent</span>
+                    </div>
+                    <h3>Service Delivery Manager & LEAN Portfolio Manager</h3>
+                    <p><em>Client: AMADEUS</em></p>
+                    <ul>
+                        <li>Gestion portefeuille projets Digital Workplace (méthodologie LEAN)</li>
+                        <li>Conseil optimisation systèmes tarification dynamique (Finnair)</li>
+                        <li>Coordination équipes internationales et formation utilisateurs</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Conztanz SA - Valbonne</span>
+                        <span class="date">2015-2021</span>
+                    </div>
+                    <h3>Chef de Projet Senior Transport</h3>
+                    <p><em>Clients: AMADEUS, Ministère Intérieur</em></p>
+                    
+                    <h4>Implémentation Inventory</h4>
+                    <ul>
+                        <li>Direction projets PROS Dynamic Pricing (Austrian, Lufthansa, TAP)</li>
+                        <li>Migration cloud systèmes RMS</li>
+                    </ul>
+                    
+                    <h4>Business Transformation</h4>
+                    <ul>
+                        <li>Alignement processus métiers (BPA) pour migrations</li>
+                        <li>Conduite changement et formation équipes</li>
+                    </ul>
+                    
+                    <h4>Sécurité Nationale</h4>
+                    <ul>
+                        <li>Gestion projet API-PNR sécurité données passagers</li>
+                        <li>Conformité standards nationaux</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">LATAM Airlines - Santiago</span>
+                        <span class="date">2007-2014</span>
+                    </div>
+                    <h3>Project Portfolio Manager</h3>
+                    <p><em>Plus grande compagnie aérienne Amérique Sud</em></p>
+                    <ul>
+                        <li>Migration programme fidélité vers Siebel CRM</li>
+                        <li>Intégration données clients post-fusion TAM/LATAM</li>
+                        <li>Migration HOST Amadeus vers Sabre</li>
+                        <li>Gestion solutions BI et négociation contrats</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
