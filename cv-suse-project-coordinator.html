@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Coordinator CV - Mauricio Inocencio for SUSE - Multilingual Project Manager with Open Source Expertise">
+    <meta name="keywords" content="CV, Project Coordinator, SUSE, Linux, Open Source, French, Project Management, Mauricio Inocencio">
+    <meta name="author" content="Mauricio Inocencio">
+    <meta name="robots" content="index, follow">
+    <title>CV - Mauricio Inocencio | Project Coordinator with French - SUSE Application</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://via.placeholder.com/32x32" sizes="32x32">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Print-specific stylesheet -->
+    <link rel="stylesheet" href="print-styles.css" media="print">
+    
+    <!-- Libraries for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Action buttons panel -->
+    <div class="action-buttons-panel">
+        <button class="action-button" id="language-toggle" aria-label="Change language" title="Change language">
+            <i class="fas fa-globe"></i> FR
+        </button>
+        <button class="action-button" id="download-pdf" aria-label="Download CV as PDF" title="Download CV as PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="action-button" id="print-cv" aria-label="Print CV" title="Print CV">
+            <i class="fas fa-print"></i>
+        </button>
+        <button class="action-button" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <!-- Old buttons (hidden with CSS but kept for backward compatibility) -->
+    <button id="theme-toggle-old" class="theme-toggle" title="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <button id="print-btn" class="print-btn">Print CV</button>
+    <button id="download-pdf-old" class="download-pdf">Download PDF</button>
+    
+    <div class="cv-container">
+        <header class="cv-header">
+            <div class="name-title">
+                <h1>MAURICIO INOCENCIO TAPIA</h1>
+                <div class="job-title">Project Coordinator with French | Open Source Enterprise Solutions</div>
+            </div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone-alt"></i> +33 7 81 72 26 80</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:mauriale@gmail.com">mauriale@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Nice, France (EMEA Region)</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mauricioinocencio" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/mauriale" target="_blank" rel="noopener noreferrer">GitHub Profile</a></p>
+                <p><i class="fas fa-id-card"></i> EU Work Authorization</p>
+            </div>
+        </header>
+        
+        <aside class="sidebar">
+            <!-- Social links -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/mauricioinocencio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/mauriale" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:mauriale@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <section id="languages-section" class="languages section">
+                <h2><i class="fas fa-language"></i> LANGUAGES</h2>
+                <div class="language-item">
+                    <span class="language-name">French</span>
+                    <span class="language-level">Fluent (Professional)</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 90%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span class="language-name">English</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 95%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span class="language-name">Spanish</span>
+                    <span class="language-level">Native</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 100%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span class="language-name">Portuguese</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 85%"></div>
+                </div>
+                
+                <div class="language-item">
+                    <span class="language-name">Italian</span>
+                    <span class="language-level">Conversational</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 75%"></div>
+                </div>
+            </section>
+            
+            <section id="skills-section" class="section">
+                <h2><i class="fas fa-cogs"></i> CORE COMPETENCIES</h2>
+                
+                <h3>Project Coordination & Management</h3>
+                <ul>
+                    <li>Multi-stakeholder project coordination across EMEA region</li>
+                    <li>Cross-functional team leadership and collaboration</li>
+                    <li>Agile and LEAN methodologies implementation</li>
+                    <li>Risk assessment and mitigation strategies</li>
+                    <li>Technical requirement gathering and documentation</li>
+                    <li>Change management and process optimization</li>
+                </ul>
+                
+                <h3>Open Source & Enterprise Solutions</h3>
+                <ul>
+                    <li>Linux enterprise environments (SLE, Ubuntu, CentOS)</li>
+                    <li>Container technologies (Docker, Kubernetes)</li>
+                    <li>Cloud platforms (Azure, AWS) and hybrid deployments</li>
+                    <li>DevOps practices and CI/CD pipelines</li>
+                    <li>Enterprise software integration and migration</li>
+                    <li>IT security compliance (SOC2, GDPR)</li>
+                </ul>
+                
+                <h3>Technical Communication</h3>
+                <ul>
+                    <li>Technical documentation in French and English</li>
+                    <li>Stakeholder presentations and requirement workshops</li>
+                    <li>Cross-cultural team communication</li>
+                    <li>Solution architecture consulting</li>
+                    <li>Customer-facing technical discussions</li>
+                </ul>
+                
+                <h3>Industry Expertise</h3>
+                <ul>
+                    <li>Enterprise software implementations</li>
+                    <li>Digital transformation initiatives</li>
+                    <li>Travel industry technology solutions</li>
+                    <li>Revenue management systems</li>
+                    <li>Data integration and analytics</li>
+                </ul>
+            </section>
+            
+            <section id="education-section" class="section">
+                <h2><i class="fas fa-graduation-cap"></i> EDUCATION</h2>
+                <h3>Universidad Técnica Federico Santa Maria</h3>
+                <ul>
+                    <li>Computer Science Engineer (Master's Equivalent)</li>
+                    <li>1998-2004 | Chile</li>
+                    <li>Specialization: Distributed Systems & Software Architecture</li>
+                    <li>Presidential Scholarship Recipient</li>
+                </ul>
+            </section>
+            
+            <section id="certifications-section" class="section">
+                <h2><i class="fas fa-certificate"></i> CERTIFICATIONS</h2>
+                <ul>
+                    <li><strong>Project Management Professional (PMP)</strong><br>PMI Certified (2007, renewed 2024)</li>
+                    <li><strong>SAFe LEAN Portfolio Management</strong><br>Scaled Agile Framework (2023)</li>
+                    <li><strong>Enterprise System Integration</strong><br>Amadeus Altea Suite Certified (2018)</li>
+                </ul>
+            </section>
+            
+            <section id="technical-tools-section" class="section">
+                <h2><i class="fas fa-tools"></i> TECHNICAL TOOLS</h2>
+                <ul>
+                    <li>Project Management: JIRA, Confluence, Azure DevOps</li>
+                    <li>Collaboration: Slack, Microsoft Teams, Zoom</li>
+                    <li>Documentation: Markdown, Wiki systems, MS Office</li>
+                    <li>Development: Git, Python, SQL, XML/JSON</li>
+                    <li>Cloud: Azure, Power Platform, Databricks</li>
+                    <li>OS: Linux (SUSE, Ubuntu), Windows, macOS</li>
+                </ul>
+            </section>
+        </aside>
+        
+        <main id="main-content" class="main-content">
+            <section id="summary-section" class="section">
+                <h2><i class="fas fa-user-tie"></i> PROFESSIONAL PROFILE</h2>
+                <p>Experienced Project Coordinator with strong French language skills and deep expertise in enterprise open source solutions. Proven ability to coordinate complex technical projects across multinational teams in the EMEA region. Passionate about open innovation, collaborative development, and delivering reliable solutions that empower organizations to innovate without limits. Seeking to contribute to SUSE's mission of leading open source enterprise solutions while building trusted partnerships within the global technology community.</p>
+            </section>
+            
+            <section id="key-achievements-section" class="section">
+                <h2><i class="fas fa-trophy"></i> KEY ACHIEVEMENTS</h2>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-globe-europe"></i> Multi-Regional Project Coordination</h3>
+                    <p>Successfully coordinated enterprise software implementations across France, Germany, Spain, and Bulgaria, managing cross-cultural teams and ensuring consistent delivery quality across all EMEA markets.</p>
+                    <p><strong>Impact:</strong> Delivered 15+ major projects on time and within budget, serving customers across multiple European regions</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-cloud"></i> Open Source Migration Leadership</h3>
+                    <p>Led comprehensive cloud migration strategies utilizing open source technologies, including Linux enterprise environments and container orchestration platforms.</p>
+                    <p><strong>Technologies:</strong> Linux distributions, Docker, Kubernetes, Azure Cloud</p>
+                    <p><strong>Impact:</strong> Reduced infrastructure costs by 30% while improving system reliability and scalability</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-users-cog"></i> Cross-Functional Team Leadership</h3>
+                    <p>Coordinated development teams, system architects, and business stakeholders in French and English, ensuring clear communication and aligned objectives across all project phases.</p>
+                    <p><strong>Impact:</strong> Improved team collaboration efficiency by 40% through structured coordination processes</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-shield-alt"></i> Enterprise Security Compliance</h3>
+                    <p>Managed IT security compliance projects including SOC2 and GDPR implementations, ensuring enterprise solutions meet the highest security and privacy standards.</p>
+                    <p><strong>Impact:</strong> Successfully achieved compliance certifications for multiple enterprise clients</p>
+                </div>
+            </section>
+            
+            <section id="experience-section" class="section">
+                <h2><i class="fas fa-briefcase"></i> PROFESSIONAL EXPERIENCE</h2>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">
+                            <i class="fas fa-building company-icon"></i>
+                            Scalian SA – www.scalian.com
+                        </span>
+                        <span class="date">October 2024-Present</span>
+                    </div>
+                    <div class="location">Sophia Antipolis, France</div>
+                    <h3>Service Delivery Manager & Technical Consultant</h3>
+                    <ul>
+                        <li><span class="client-dept">[AMADEUS - Global Travel Technology]</span> Coordinating enterprise solution delivery for Finnair and other European airlines</li>
+                        <li>Managing cross-functional project teams across multiple time zones and countries</li>
+                        <li>Translating complex business requirements into technical specifications for development teams</li>
+                        <li>Conducting system audits and performance optimization assessments</li>
+                        <li>Delivering technical training and knowledge transfer sessions in French and English</li>
+                        <li>Coordinating with open source communities and enterprise vendors for solution integration</li>
+                        <li>Performing data analysis and generating actionable insights for enterprise decision-making</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">
+                            <i class="fas fa-building company-icon"></i>
+                            Scalian SA – www.scalian.com
+                        </span>
+                        <span class="date">March 2022-September 2024</span>
+                    </div>
+                    <div class="location">Sophia Antipolis, France</div>
+                    <h3>LEAN Portfolio Manager & Project Coordinator</h3>
+                    <ul>
+                        <li><span class="client-dept">[AMADEUS - Digital Workplace Services]</span> Coordinated alignment between development initiatives and strategic business objectives</li>
+                        <li>Implemented LEAN methodology principles to optimize development prioritization and resource allocation</li>
+                        <li>Managed cross-departmental project coordination ensuring successful achievement of OKRs</li>
+                        <li>Delivered comprehensive LEAN Portfolio Management training to project managers and team leads</li>
+                        <li>Coordinated with open source technology vendors and community contributors</li>
+                        <li>Facilitated stakeholder communication across French and international teams</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">
+                            <i class="fas fa-plane company-icon"></i>
+                            Kiveca SA – Airline Technology Consulting
+                        </span>
+                        <span class="date">September 2021-December 2021</span>
+                    </div>
+                    <div class="location">Luxembourg & Sophia Antipolis, France</div>
+                    <h3>Senior Project Manager & Solution Coordinator</h3>
+                    <ul>
+                        <li><span class="client-dept">[LUXAIR Airlines - Luxembourg]</span> Coordinated comprehensive process optimization and cloud migration initiative</li>
+                        <li>Managed cross-functional teams spanning IT operations, business analysis, and system architecture</li>
+                        <li>Facilitated inter-team collaboration frameworks and communication protocols</li>
+                        <li>Coordinated cloud migration projects utilizing open source and hybrid cloud technologies</li>
+                        <li>Delivered project documentation and stakeholder reports in French and English</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">
+                            <i class="fas fa-building company-icon"></i>
+                            Conztanz SA – Enterprise Technology Consulting
+                        </span>
+                        <span class="date">September 2015-December 2020</span>
+                    </div>
+                    <div class="location">Valbonne, France</div>
+                    <h3>Senior Project Manager – Enterprise Solutions Coordination</h3>
+                    <ul>
+                        <li><span class="client-dept">[AMADEUS - Inventory Implementation]</span> Coordinated enterprise solution implementations for Austrian Airlines, Lufthansa, and TAP Air Portugal</li>
+                        <li>Managed technical project coordination for dynamic pricing system implementations</li>
+                        <li>Coordinated cloud migration initiatives utilizing Linux-based infrastructure</li>
+                        <li>Led cross-cultural project teams across Germany, Austria, and Portugal</li>
+                        <li>Facilitated technical requirement workshops and stakeholder alignment sessions</li>
+                    </ul>
+                    <ul>
+                        <li><span class="client-dept">[AMADEUS - Business Transformation]</span> Coordinated Business Process Alignment implementations for airline digital transformation projects</li>
+                        <li>Managed coordination between technical teams and business stakeholders</li>
+                        <li>Synchronized personnel, processes, and technology integration across enterprise systems</li>
+                        <li>Coordinated vendor relationships and open source technology evaluations</li>
+                    </ul>
+                    <ul>
+                        <li><span class="client-dept">[FRENCH HOMELAND SECURITY]</span> Project coordination for API-PNR compliance initiative</li>
+                        <li>Coordinated adherence and certification processes for global airlines</li>
+                        <li>Managed stakeholder communication with government agencies and international airlines</li>
+                        <li>Coordinated implementation of monitoring and surveillance system integrations</li>
+                        <li>Served as primary coordination liaison for national standards compliance initiatives</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">
+                            <i class="fas fa-plane company-icon"></i>
+                            LATAM Airlines Group – www.latam.com
+                        </span>
+                        <span class="date">2007-2014</span>
+                    </div>
+                    <div class="location">Santiago, Chile</div>
+                    <h3>Project Portfolio Coordinator - Enterprise Systems</h3>
+                    <ul>
+                        <li>Coordinated strategic technology initiatives at South America's largest airline</li>
+                        <li>Managed complex data migration projects and system integration initiatives</li>
+                        <li>Coordinated Business Intelligence product implementations across enterprise</li>
+                        <li>Led customer integration coordination following major airline merger (TAM-LATAM)</li>
+                        <li>Managed critical HOST system migration coordination from Amadeus to Sabre platforms</li>
+                        <li>Coordinated cross-functional teams across Systems Architecture, Engineering, QA, and Operations</li>
+                        <li>Established stakeholder communication protocols and vendor contract negotiations</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="suse-alignment-section" class="section">
+                <h2><i class="fas fa-handshake"></i> ALIGNMENT WITH SUSE VALUES</h2>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-check-circle"></i> Choice</h3>
+                    <p>Throughout my career, I've championed giving organizations the freedom to choose their technology stack. I've successfully coordinated migrations between different platforms, ensuring customers have the flexibility to select solutions that best fit their needs rather than being locked into proprietary ecosystems.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-lightbulb"></i> Innovation</h3>
+                    <p>I've consistently led innovation initiatives in my project coordination role, from implementing cutting-edge dynamic pricing systems to coordinating cloud-native migrations. My approach focuses on pushing boundaries while maintaining reliability and security.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-shield-check"></i> Trust</h3>
+                    <p>Built trusted relationships with multinational teams and enterprise clients by delivering consistent results, maintaining transparent communication, and ensuring security compliance. My track record demonstrates reliability in coordinating mission-critical enterprise solutions.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title"><i class="fas fa-users"></i> Community</h3>
+                    <p>I believe in the power of collaborative development and have experience coordinating with open source communities, vendor partners, and customer teams. My multilingual capabilities enable me to build bridges across diverse communities and foster inclusive collaboration.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- PDF generation loading indicator styles -->
+    <style>
+        .pdf-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .pdf-loading p {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .generating-pdf {
+            background-color: white !important;
+        }
+        
+        .generating-pdf .cv-container {
+            max-width: 900px !important;
+            margin: 0 auto !important;
+        }
+        
+        .generating-pdf .theme-toggle,
+        .generating-pdf .print-btn,
+        .generating-pdf .download-pdf,
+        .generating-pdf .action-buttons-panel,
+        .generating-pdf .skip-link,
+        .generating-pdf .social-links {
+            display: none !important;
+        }
+        
+        @media (min-height: 1200px) {
+            .generating-pdf .cv-container {
+                transform: scale(0.9);
+                transform-origin: top center;
+            }
+        }
+    </style>
+    
+    <!-- Load JavaScript file -->
+    <script src="script.js"></script>
+    
+    <!-- Structured data for better SEO (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mauricio Inocencio Tapia",
+      "jobTitle": "Project Coordinator with French",
+      "telephone": "+33 7 81 72 26 80",
+      "email": "mauriale@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nice",
+        "addressCountry": "France"
+      },
+      "url": "https://mauriale.github.io/MyCV/cv-suse-project-coordinator.html",
+      "sameAs": [
+        "https://www.linkedin.com/in/mauricioinocencio",
+        "https://github.com/mauriale"
+      ],
+      "knowsLanguage": [
+        "French", "English", "Spanish", "Portuguese", "Italian"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad Técnica Federico Santa Maria",
+        "sameAs": "https://www.usm.cl/"
+      },
+      "workExperience": [
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Service Delivery Manager",
+          "startDate": "2024-10",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Scalian SA",
+            "sameAs": "https://www.scalian.com"
+          },
+          "workLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Sophia Antipolis",
+              "addressCountry": "France"
+            }
+          }
+        }
+      ]
+    }
+    </script>
+</body>
+</html>
