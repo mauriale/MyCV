@@ -1,335 +1,285 @@
 :root {
     --primary-color: #000000;
     --secondary-color: #f4b400;
+    /* Mustard Yellow from HeyTripGo */
     --accent-color: #f4b400;
     --text-color: #222222;
-    --light-gray: #f0efe6;
-    /* Slightly darker cream for sidebar/cards */
-    --border-color: #000000;
     --bg-color: #faf8f0;
-    /* Cream background */
-    --icon-color: #000000;
-    --skill-bar-bg: #e0e0e0;
-    --skill-bar-fill: #f4b400;
+    /* Cream Background */
+    --border-color: #000000;
+    --light-gray: #e0e0e0;
+    /* Used for skill bar backgrounds */
 }
 
-/* Dark mode colors - keeping them but adjusting to fit new theme if toggled, or disabling? 
-   User wants specific company identity. Dark mode might conflict. 
-   I will adapt dark mode to be "High Concstrast" or similar, or just keep it as inverse.
-   For now, I'll update standard dark mode to be compatible but emphasis is on the Cream/Yellow theme.
-*/
-[data-theme="dark"] {
-    --primary-color: #ffffff;
-    --secondary-color: #f4b400;
-    --accent-color: #f4b400;
-    --text-color: #f0f0f0;
-    --light-gray: #333333;
-    --border-color: #555555;
-    --bg-color: #1a1a1a;
-    --icon-color: #f4b400;
-    --skill-bar-bg: #555555;
-    --skill-bar-fill: #f4b400;
-}
-
+/* Global Reset & Typography */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
 }
 
 body {
+    background-color: var(--bg-color);
     color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: var(--bg-color);
-    transition: all 0.3s ease;
 }
 
-/* Skip to content link for accessibility */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--primary-color);
-    color: white;
-    padding: 8px;
-    z-index: 100;
-    transition: top 0.3s;
-}
-
-.skip-link:focus {
-    top: 0;
-}
-
-.cv-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 30px;
-}
-
-.cv-header {
-    grid-column: span 2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--secondary-color);
-    margin-bottom: 30px;
-}
-
-.name-title {
-    flex-grow: 1;
+/* Typography - Headers */
+h1,
+h2,
+h3,
+.job-title,
+.company {
+    font-family: 'Oswald', sans-serif;
+    color: var(--primary-color);
+    text-transform: uppercase;
 }
 
 h1 {
-    color: var(--primary-color);
-    font-family: 'Oswald', sans-serif;
     font-size: 3rem;
-    line-height: 1.1;
     font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.job-title {
-    color: var(--text-color);
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    font-size: 1.4rem;
-    font-weight: 500;
-}
-
-.contact-info {
-    text-align: right;
-    flex-shrink: 0;
-}
-
-.contact-info p {
+    line-height: 1.1;
     margin-bottom: 5px;
 }
 
-.contact-info a {
-    color: var(--secondary-color);
-    text-decoration: none;
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.sidebar {
-    background-color: var(--light-gray);
-    padding: 25px;
-    border-radius: 0;
-    /* Removing border radius for more industrial look */
-    border: 1px solid var(--border-color);
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-    justify-content: center;
-}
-
-.social-links a {
-    color: var(--icon-color);
+.job-title {
     font-size: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.social-links a:hover {
-    transform: scale(1.2);
-}
-
-.main-content {
-    padding: 0 10px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    /* Kept dark for contrast */
 }
 
 h2 {
-    color: var(--primary-color);
-    font-family: 'Oswald', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
-    text-transform: uppercase;
     margin: 30px 0 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    /* Thicker industrial border */
     display: flex;
     align-items: center;
 }
 
 h2 i {
+    color: var(--secondary-color);
+    /* Yellow icons in headers */
     margin-right: 10px;
-    color: var(--icon-color);
+    /* Optional: Add a box around header icons? User said "novel". 
+       Let's keep header icons simple but colored. */
 }
 
 h3 {
-    color: var(--primary-color);
-    font-family: 'Oswald', sans-serif;
     font-size: 1.3rem;
-    font-weight: 500;
-    text-transform: uppercase;
+    font-weight: 700;
     margin: 20px 0 10px;
 }
 
-.sidebar h2 {
-    margin-top: 0;
+/* Layout */
+.cv-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
 }
 
-ul {
-    list-style-type: none;
-    margin-bottom: 15px;
+/* Sidebar */
+.sidebar {
+    /* Transparent or slight border to separate */
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    padding: 25px;
 }
 
-ul li {
+.contact-info p {
     margin-bottom: 8px;
-    position: relative;
-    padding-left: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 }
 
-ul li::before {
-    content: "";
-    background-color: var(--secondary-color);
-    border: 1px solid var(--primary-color);
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    position: absolute;
-    left: 0;
-    top: 8px;
-    /* Adjust based on line-height */
+.contact-info i {
+    color: var(--secondary-color);
+    width: 20px;
+    text-align: center;
+    margin-right: 5px;
 }
 
+.contact-info a {
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Main Content */
+.main-content {
+    padding-top: 0;
+}
+
+/* Jobs / Experience */
 .job {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed var(--border-color);
-}
-
-.job:last-child {
-    border-bottom: none;
+    margin-bottom: 30px;
+    border-left: 3px solid var(--secondary-color);
+    /* Industrial accent */
+    padding-left: 20px;
 }
 
 .job-header {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     margin-bottom: 5px;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
 .company {
-    font-weight: 600;
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-}
-
-.company-icon {
-    color: var(--icon-color);
-    margin-right: 10px;
     font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .date {
-    color: var(--secondary-color);
-    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    padding: 2px 8px;
+    color: #000;
+    /* Contrast on yellow */
 }
 
 .location {
     font-style: italic;
     margin-bottom: 10px;
-    color: #666;
+    color: #555;
 }
 
-.languages {
-    margin-top: 25px;
+/* Lists and Bullets - The "Novel" Design */
+ul {
+    list-style: none;
+}
+
+ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    /* Alignment */
+    width: 10px;
+    height: 10px;
+    background-color: var(--secondary-color);
+    /* Yellow box */
+    border: 1px solid var(--primary-color);
+    /* Black border */
+}
+
+/* Skill Bars */
+.skill-bar-container {
+    height: 10px;
+    background-color: var(--light-gray);
+    margin-top: 5px;
+    border: 1px solid var(--primary-color);
+}
+
+.skill-bar {
+    height: 100%;
+    background-color: var(--secondary-color);
 }
 
 .language-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+    margin-top: 15px;
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
 }
 
-.language-name {
-    flex: 1;
+/* Value Proposition Section - Cards */
+#value-prop-section {
+    background-color: transparent;
+    /* Seamless with body */
+    padding: 0;
+    margin-bottom: 40px;
 }
 
-.language-level {
-    flex: 1;
-    text-align: right;
+#value-prop-section h2 {
+    border-bottom: none;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
 }
 
-.skill-bar-container {
-    height: 8px;
-    background-color: var(--skill-bar-bg);
-    border-radius: 4px;
-    margin-top: 5px;
-    overflow: hidden;
+#value-prop-section h2 i {
+    display: none;
 }
 
-.skill-bar {
-    height: 100%;
-    background-color: var(--skill-bar-fill);
-    border-radius: 4px;
+#value-prop-section ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.client-dept {
-    font-weight: bold;
+#value-prop-section li {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.project-card {
-    background-color: var(--light-gray);
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+#value-prop-section li::before {
+    display: none;
+    /* No bullets for cards */
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-.project-title {
+#value-prop-section i.fas {
+    /* Icon styling for prop cards */
+    background-color: var(--secondary-color);
     color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border: 2px solid var(--primary-color);
 }
 
-.project-title i {
-    margin-right: 8px;
-    color: var(--icon-color);
+#value-prop-section strong {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.project-links {
-    margin-top: 10px;
-}
-
-.project-links a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    margin-right: 15px;
-    display: inline-flex;
-    align-items: center;
-}
-
-.project-links a i {
-    margin-right: 5px;
-}
-
-.project-links a:hover {
-    text-decoration: underline;
-}
-
-/* Action buttons panel */
+/* Action Buttons (Fixed Panel) */
 .action-buttons-panel {
     position: fixed;
     right: 20px;
@@ -338,80 +288,46 @@ ul li::before {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 999;
+    z-index: 100;
 }
 
 .action-button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--primary-color);
     background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: var(--primary-color);
+    border-radius: 0;
+    /* Square/Industrial */
+    cursor: pointer;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s;
 }
 
 .action-button:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.action-button:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 8px;
+    z-index: 200;
+    font-weight: bold;
 }
 
-/* Remove old button styles */
-.theme-toggle,
-.print-btn,
-.download-pdf {
-    display: none;
+.skip-link:focus {
+    top: 0;
 }
 
-/* Print styles */
-@media print {
-    .action-buttons-panel {
-        display: none;
-    }
-
-    body {
-        padding: 0;
-        font-size: 12pt;
-    }
-
-    .cv-container {
-        grid-template-columns: 1fr 2fr;
-        gap: 15px;
-    }
-
-    h1 {
-        font-size: 18pt;
-    }
-
-    h2 {
-        font-size: 14pt;
-    }
-
-    h3 {
-        font-size: 12pt;
-    }
-
-    .project-card {
-        box-shadow: none;
-        border: 1px solid var(--border-color);
-    }
-
-    .skill-bar-container {
-        border: 1px solid var(--border-color);
-    }
-}
-
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
     .cv-container {
         grid-template-columns: 1fr;
@@ -423,41 +339,17 @@ ul li::before {
         grid-column: 1;
     }
 
-    .name-title {
-        margin-bottom: 15px;
-    }
-
     .contact-info {
         text-align: center;
+        margin-top: 20px;
     }
 
     .action-buttons-panel {
-        right: 10px;
-        bottom: 20px;
         top: auto;
-        transform: none;
+        bottom: 20px;
+        right: 20px;
         flex-direction: row;
-    }
-
-    .sidebar-menu {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .sidebar-menu a {
-        padding: 5px 10px;
-        background-color: var(--light-gray);
-        border-radius: 5px;
-        text-decoration: none;
-        color: var(--text-color);
-    }
-
-    .sidebar-menu a.active {
-        background-color: var(--secondary-color);
-        color: white;
+        transform: none;
     }
 
     .job-header {
@@ -470,114 +362,34 @@ ul li::before {
     }
 }
 
-/* Animation for page load */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+/* Print Styles */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        /* Save ink */
     }
 
-    to {
-        opacity: 1;
+    .action-buttons-panel {
+        display: none;
     }
-}
 
-.cv-container {
-    animation: fadeIn 0.8s ease-in-out;
-}
+    .cv-container {
+        display: block;
+    }
 
-/* Accessibility improvements */
-a:focus,
-button:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-}
+    .sidebar {
+        border: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
 
-.section {
-    scroll-margin-top: 20px;
-}
+    .job {
+        break-inside: avoid;
+    }
 
-/* Company icon styles */
-.company-icon {
-    display: inline-block;
-    margin-right: 10px;
-    color: var(--icon-color);
-    font-size: 1.1em;
-    width: 24px;
-    text-align: center;
-}
-
-/* HeyTripGo inspired Value Proposition Styles */
-#value-prop-section {
-    background-color: #faf8f0;
-    /* Cream background */
-    padding: 40px 20px;
-    border-radius: 8px;
-    margin-bottom: 40px;
-    color: #000;
-}
-
-#value-prop-section h2 {
-    color: #000;
-    text-transform: uppercase;
-    font-weight: 800;
-    text-align: center;
-    border-bottom: none;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-}
-
-#value-prop-section h2 i {
-    color: #000;
-    display: none;
-    /* Hide the star icon in the header */
-}
-
-#value-prop-section ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Grid layout */
-    gap: 20px;
-    padding: 0;
-}
-
-#value-prop-section li {
-    background: transparent;
-    border: 1px solid #000;
-    padding: 20px;
-    padding-left: 20px;
-    /* Reset padding */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    height: 100%;
-}
-
-#value-prop-section li::before {
-    display: none;
-    /* Remove default bullet */
-}
-
-/* Icon box styling */
-#value-prop-section li i {
-    position: static;
-    background-color: #f4b400;
-    /* Yellow accent */
-    color: #000;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    border: 1px solid #000;
-}
-
-#value-prop-section strong {
-    display: block;
-    text-transform: uppercase;
-    font-weight: 800;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+    h2 {
+        border-bottom: 2px solid #000;
+    }
 }
