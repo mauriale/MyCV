@@ -93,8 +93,8 @@ h1 {
 /* Layout */
 .cv-container {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    /* Fixed narrow sidebar for letter aspect */
+    grid-template-columns: 290px 1fr;
+    /* Increased sidebar width ~30% (220px -> 290px) */
     gap: 30px;
 }
 
