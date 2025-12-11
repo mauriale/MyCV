@@ -93,8 +93,8 @@ h1 {
 /* Layout */
 .cv-container {
     display: grid;
-    grid-template-columns: 290px 1fr;
-    /* Increased sidebar width ~30% (220px -> 290px) */
+    grid-template-columns: 350px 1fr;
+    /* Increased sidebar width again (+20% -> ~350px) */
     gap: 30px;
 }
 
@@ -250,13 +250,12 @@ ul li::before {
     background: transparent;
     border: 2px solid var(--primary-color);
     padding: 20px;
-    display: flex;
-    flex-direction: row;
-    /* Horizontal alignment */
-    align-items: flex-start;
-    /* Align top */
+    display: grid;
+    grid-template-columns: 40px 140px 1fr;
+    /* Icon | Title | Description */
     gap: 15px;
-    /* Space between icon and text */
+    /* Spacing between columns */
+    align-items: start;
 }
 
 #value-prop-section li::before {
@@ -293,30 +292,18 @@ ul li::before {
 
 
 
-#value-prop-section i.fas {
-    /* Icon styling for prop cards */
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    width: 35px;
-    /* Reduced Size */
-    height: 35px;
-    /* Reduced Size */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    /* Reduced Font Size */
-    margin-bottom: 15px;
-    border: 1px solid var(--primary-color);
-}
+
 
 #value-prop-section strong {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    /* Slightly reduced to fit column */
+    display: inline-block;
+    /* Allow grid placement */
+    margin-bottom: 0;
+    line-height: 1.2;
 }
 
 /* Action Buttons (Fixed Panel) */
