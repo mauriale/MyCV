@@ -251,11 +251,15 @@ ul li::before {
     border: 2px solid var(--primary-color);
     padding: 20px;
     display: grid;
-    grid-template-columns: 40px 140px 1fr;
-    /* Icon | Title | Description */
-    gap: 15px;
-    /* Spacing between columns */
+    grid-template-columns: 40px 1fr;
+    /* Icon | Content (Title + Text) */
+    grid-template-rows: min-content 1fr;
+    /* Row for Title, Row for Text */
+    gap: 10px 20px;
+    /* Row gap 10px, Col gap 20px */
     align-items: start;
+    text-align: justify;
+    /* "Justificado al tamaño" */
 }
 
 #value-prop-section li::before {
@@ -267,7 +271,6 @@ ul li::before {
     background-color: var(--secondary-color);
     color: var(--primary-color);
     min-width: 35px;
-    /* Fixed width prevents shrinking */
     width: 35px;
     height: 35px;
     display: flex;
@@ -275,12 +278,13 @@ ul li::before {
     justify-content: center;
     font-size: 1rem;
     margin-bottom: 0;
-    /* Remove bottom margin */
     border: 1px solid var(--primary-color);
-    flex-shrink: 0;
-    /* Don't shrink */
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    /* Span both title and text rows */
+    align-self: start;
     margin-top: 5px;
-    /* Optical alignment with text title */
+    /* Optical adjustment */
 }
 
 .value-prop-content {
@@ -298,12 +302,15 @@ ul li::before {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 1rem;
-    /* Slightly reduced to fit column */
-    display: inline-block;
-    /* Allow grid placement */
-    margin-bottom: 0;
+    font-size: 1.1rem;
+    grid-column: 2;
+    /* Force into second column */
+    grid-row: 1;
+    /* Force into first row */
+    margin-bottom: 5px;
     line-height: 1.2;
+    text-align: left;
+    /* Keep title left aligned even if text is justified */
 }
 
 /* Action Buttons (Fixed Panel) */
