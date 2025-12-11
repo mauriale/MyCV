@@ -23,9 +23,14 @@ body {
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 850px;
+    /* Letter sized width approx */
+    margin: 30px auto;
+    /* Centered visually */
+    padding: 40px;
+    /* Document padding */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    /* Slight shadow to resemble paper */
 }
 
 /* Typography - Headers */
@@ -40,7 +45,8 @@ h3,
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.4rem;
+    /* Reduced size */
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 5px;
@@ -49,23 +55,6 @@ h1 {
 .job-title {
     font-size: 1.5rem;
     font-weight: 500;
-    margin-bottom: 15px;
-    color: var(--text-color);
-    /* Kept dark for contrast */
-}
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 30px 0 20px;
-    padding-bottom: 10px;
-    border-bottom: 3px solid var(--primary-color);
-    /* Thicker industrial border */
-    display: flex;
-    align-items: center;
-}
-
-h2 i {
     color: var(--secondary-color);
     /* Yellow icons in headers */
     margin-right: 10px;
@@ -73,17 +62,43 @@ h2 i {
        Let's keep header icons simple but colored. */
 }
 
-h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin: 20px 0 10px;
+/* Header */
+.cv-header {
+    grid-column: span 2;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    /* Spacing between items */
+    margin-top: 5px;
+}
+
+.contact-info p {
+    margin-bottom: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    color: var(--secondary-color);
+    margin-right: 5px;
+    width: auto;
 }
 
 /* Layout */
 .cv-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
+    grid-template-columns: 220px 1fr;
+    /* Fixed narrow sidebar for letter aspect */
+    gap: 30px;
 }
 
 /* Sidebar */
@@ -94,17 +109,8 @@ h3 {
     padding: 25px;
 }
 
-.contact-info p {
-    margin-bottom: 8px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-}
-
-.contact-info i {
-    color: var(--secondary-color);
-    width: 20px;
-    text-align: center;
-    margin-right: 5px;
+.contact-info {
+    /* overrides above */
 }
 
 .contact-info a {
@@ -260,14 +266,17 @@ ul li::before {
     /* Icon styling for prop cards */
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    /* Reduced Size */
+    height: 35px;
+    /* Reduced Size */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    border: 2px solid var(--primary-color);
+    font-size: 1rem;
+    /* Reduced Font Size */
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-color);
 }
 
 #value-prop-section strong {
