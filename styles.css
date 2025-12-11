@@ -23,14 +23,11 @@ body {
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    max-width: 850px;
-    /* Letter sized width approx */
+    max-width: 1100px;
+    /* Increased 30% from 850px */
     margin: 30px auto;
-    /* Centered visually */
     padding: 40px;
-    /* Document padding */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    /* Slight shadow to resemble paper */
 }
 
 /* Typography - Headers */
@@ -109,9 +106,7 @@ h1 {
     padding: 25px;
 }
 
-.contact-info {
-    /* overrides above */
-}
+
 
 .contact-info a {
     color: var(--text-color);
@@ -226,16 +221,19 @@ ul li::before {
 /* Value Proposition Section - Cards */
 #value-prop-section {
     background-color: transparent;
-    /* Seamless with body */
     padding: 0;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    /* Reduced spacing */
 }
 
 #value-prop-section h2 {
     border-bottom: none;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Aligned left usually better, but user liked centered before? Image shows Left. */
     font-size: 2rem;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    /* Reduced spacing */
+    padding-left: 0;
 }
 
 #value-prop-section h2 i {
@@ -251,16 +249,49 @@ ul li::before {
 #value-prop-section li {
     background: transparent;
     border: 2px solid var(--primary-color);
-    padding: 25px;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* Horizontal alignment */
     align-items: flex-start;
+    /* Align top */
+    gap: 15px;
+    /* Space between icon and text */
 }
 
 #value-prop-section li::before {
     display: none;
-    /* No bullets for cards */
 }
+
+#value-prop-section i.fas {
+    /* Icon styling for prop cards */
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    min-width: 35px;
+    /* Fixed width prevents shrinking */
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 0;
+    /* Remove bottom margin */
+    border: 1px solid var(--primary-color);
+    flex-shrink: 0;
+    /* Don't shrink */
+    margin-top: 5px;
+    /* Optical alignment with text title */
+}
+
+.value-prop-content {
+    /* Optional wrapper logic, but assuming flex behavior handles list items children */
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 
 #value-prop-section i.fas {
     /* Icon styling for prop cards */
