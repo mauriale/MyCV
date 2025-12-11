@@ -477,3 +477,73 @@ a:focus, button:focus {
     width: 24px;
     text-align: center;
 }
+
+/* HeyTripGo inspired Value Proposition Styles */
+#value-prop-section {
+    background-color: #faf8f0; /* Cream background */
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    color: #000;
+}
+
+#value-prop-section h2 {
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 800;
+    text-align: center;
+    border-bottom: none;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+#value-prop-section h2 i {
+    color: #000;
+    display: none; /* Hide the star icon in the header */
+}
+
+#value-prop-section ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid layout */
+    gap: 20px;
+    padding: 0;
+}
+
+#value-prop-section li {
+    background: transparent;
+    border: 1px solid #000;
+    padding: 20px;
+    padding-left: 20px; /* Reset padding */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    height: 100%;
+}
+
+#value-prop-section li::before {
+    display: none; /* Remove default bullet */
+}
+
+/* Icon box styling */
+#value-prop-section li i {
+    position: static;
+    background-color: #f4b400; /* Yellow accent */
+    color: #000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+}
+
+#value-prop-section strong {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
