@@ -34,10 +34,9 @@ body {
 #education-section,
 #certifications-section,
 #activities-section {
-    margin-top: 40px;
-    /* Space BEFORE these sections */
+    margin-top: 25px;
+    /* Adjusted to 25px to match 'Travel Tech' spacing (Red line request) */
     margin-bottom: 40px;
-    /* Space AFTER these sections */
 }
 
 .job-title {
@@ -53,7 +52,8 @@ body {
 /* Header */
 .cv-header {
     grid-column: span 2;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    /* Removed gap (Green line request) */
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 15px;
 }
@@ -118,7 +118,8 @@ body {
 }
 
 .social-links {
-    display: flex;
+    display: none !important;
+    /* Hidden per user request */
     gap: 15px;
     margin-bottom: 30px;
 }
