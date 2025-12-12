@@ -138,6 +138,13 @@ body {
     padding-top: 0;
 }
 
+/* Main Content Sections Spacing */
+#core-competencies-section,
+#experience-section {
+    margin-top: 40px;
+    /* Spacing before major sections */
+}
+
 /* Jobs / Experience */
 .job {
     margin-bottom: 30px;
