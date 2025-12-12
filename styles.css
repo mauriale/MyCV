@@ -24,9 +24,20 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     max-width: 1400px;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 5px;
+    margin: 30px auto;
+    /* Centered layout */
+    padding: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Section Spacing Adjustments */
+#education-section,
+#certifications-section,
+#activities-section {
+    margin-top: 40px;
+    /* Space BEFORE these sections */
+    margin-bottom: 40px;
+    /* Space AFTER these sections */
 }
 
 .job-title {
