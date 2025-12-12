@@ -46,7 +46,7 @@ const translations = {
         interests: "Interests",
 
         // Professional Summary
-        professionalSummaryText: "Strategic Account Manager and Travel Technology Expert with 15+ years of experience in EMEA and APAC markets. Specialized in high-value contract negotiations, API integrations, and complex distribution solutions for airlines and global aggregators.",
+        professionalSummaryText: "Strategic Account Manager and Travel Technology Expert with 15+ years of experience bridging the gap between commercial strategy and technical execution in the global travel industry. Proven track record of managing Tier-1 airline accounts (Lufthansa, Finnair, LATAM) and leading complex digital transformations.<br><br>Possess a unique hybrid profile combining deep technical expertise in API integrations (XML/EDIFACT, PROS RTDP) with high-level stakeholder management and business development. Expert in translating complex technical capabilities into business value for partners, ensuring successful adoption of distribution technologies. Trilingual (English, Spanish, French) with extensive cross-cultural experience bridging European, Latin American, and Asian markets.",
 
         // Featured Projects
         dynamicPricingOptimization: "Dynamic Pricing Optimization",
