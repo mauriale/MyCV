@@ -80,31 +80,38 @@
     .skip-link,
     .social-links,
     .language-toggle {
-        display: none !important;
+
+        .social-links,
+        .language-toggle,
+        .action-buttons-panel,
+        #theme-toggle,
+        #print-btn,
+        #download-pdf {
+            display: none !important;
+        }
+
+        /* Prevent awkward breaks */
+        .section,
+        .job,
+        li {
+            page-break-inside: avoid;
+        }
+
+        a {
+            text-decoration: none !important;
+            color: inherit !important;
+        }
     }
 
-    /* Prevent awkward breaks */
-    .section,
-    .job,
-    li {
-        page-break-inside: avoid;
+    /* Explicit class for PDF generation tool (dom-to-image) */
+    .generating-pdf {
+        background-color: #faf8f0 !important;
+        width: 1400px !important;
+        /* Force desktop width for capture */
+        margin: 0 auto !important;
     }
 
-    a {
-        text-decoration: none !important;
-        color: inherit !important;
+    .generating-pdf .cv-container {
+        width: 1400px !important;
+        /* Match web width */
     }
-}
-
-/* Explicit class for PDF generation tool (dom-to-image) */
-.generating-pdf {
-    background-color: #faf8f0 !important;
-    width: 1400px !important;
-    /* Force desktop width for capture */
-    margin: 0 auto !important;
-}
-
-.generating-pdf .cv-container {
-    width: 1400px !important;
-    /* Match web width */
-}

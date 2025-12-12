@@ -24,26 +24,6 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     max-width: 1400px;
-    /* Reverted to 1400px */
-    margin: 30px auto;
-    padding: 40px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Typography - Headers */
-h1,
-h2,
-h3,
-.job-title,
-.company {
-    font-family: 'Oswald', sans-serif;
-    color: var(--primary-color);
-    text-transform: uppercase;
-}
-
-h1 {
-    font-size: 2.4rem;
-    /* Reduced size */
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 5px;
@@ -104,6 +84,18 @@ h1 {
     background-color: transparent;
     border: 2px solid var(--primary-color);
     padding: 25px;
+}
+
+.sidebar h3 {
+    margin-top: 25px;
+    /* Spacing before sidebar sub-sections */
+    margin-bottom: 15px;
+    /* Spacing after sidebar headers */
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--primary-color);
+    /* Optional: Separation line */
+    padding-bottom: 5px;
+    display: inline-block;
 }
 
 
@@ -178,9 +170,12 @@ ul {
 }
 
 ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    /* Increased visual spacing between items */
     position: relative;
     padding-left: 25px;
+    line-height: 1.5;
+    /* Improve readability */
 }
 
 ul li::before {
@@ -314,15 +309,9 @@ ul li::before {
 }
 
 /* Action Buttons (Fixed Panel) */
+/* Action Buttons (Fixed Panel) - HIDDEN per user request */
 .action-buttons-panel {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 100;
+    display: none !important;
 }
 
 .action-button {
