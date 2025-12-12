@@ -1,12 +1,3 @@
-# My Professional CV
-
-This repository contains my professional CV in HTML format, showcasing my experience as a Senior Project Manager and LEAN Portfolio Manager in the travel industry.
-
-## Current Version
-
-**Version 1.0** - Initial release (April 23, 2025)
-
-For version details, see [VERSION.md](VERSION.md)
 
 ## Features
 
