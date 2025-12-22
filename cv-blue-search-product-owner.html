@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CV de Mauricio Inocencio - Chef de Projet Senior / Senior Product Owner - Méthode Agile">
+    <meta name="description"
+        content="CV de Mauricio Inocencio - Chef de Projet Senior / Senior Product Owner - Méthode Agile">
     <title>CV - Mauricio Inocencio | Chef de Projet Senior / Senior Product Owner</title>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="print-styles.css" media="print">
-    
+
     <style>
         :root {
             --primary-color: #2563eb;
@@ -392,21 +396,48 @@
         }
 
         @media print {
-            body {
-                background: white;
-            }
-
-            .cv-container {
-                box-shadow: none;
+            @page {
+                size: letter portrait;
                 margin: 0;
             }
 
-            .job {
-                page-break-inside: avoid;
+            body {
+                /* Use a gradient to simulate the sidebar background covering the full left side */
+                background: linear-gradient(to right, #f8fafc 250px, white 251px);
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                width: 100%;
+                margin: 0;
+                padding: 0;
             }
 
-            .section {
-                page-break-inside: avoid;
+            .cv-container {
+                display: grid;
+                grid-template-columns: 250px 1fr;
+                /* Fixed width matching gradient */
+                width: 100%;
+                max-width: none;
+                break-inside: avoid;
+            }
+
+            .competencies-grid {
+                gap: 15px;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-info {
+                gap: 15px;
+                margin-top: 15px;
+            }
+
+            .sidebar .section {
+                margin-bottom: 25px;
+            }
+
+            /* Hide potential non-printable elements if any existed (none here really) */
+            a {
+                text-decoration: none;
+                color: inherit;
             }
         }
 
@@ -433,6 +464,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="cv-container">
         <header class="cv-header">
@@ -444,14 +476,15 @@
                 <p><i class="fas fa-phone-alt"></i> +33 7 81 72 26 80</p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:mauriale@gmail.com">mauriale@gmail.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> Nice, France</p>
-                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mauricioinocencio" target="_blank">LinkedIn</a></p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mauricioinocencio"
+                        target="_blank">LinkedIn</a></p>
             </div>
         </header>
-        
+
         <aside class="sidebar">
             <section class="section">
                 <h2><i class="fas fa-cogs"></i> Compétences</h2>
-                
+
                 <h3>Méthodologies Agiles</h3>
                 <ul>
                     <li>SAFe LEAN Portfolio Management</li>
@@ -460,7 +493,7 @@
                     <li>Rituels Agiles</li>
                     <li>Gestion de Backlog Produit</li>
                 </ul>
-                
+
                 <h3>Gestion de Produit</h3>
                 <ul>
                     <li>Vision & Stratégie Produit</li>
@@ -470,7 +503,7 @@
                     <li>OKRs & KPIs</li>
                     <li>MVP & Discovery</li>
                 </ul>
-                
+
                 <h3>Outils & Technologies</h3>
                 <ul>
                     <li>JIRA, Confluence, Azure DevOps</li>
@@ -479,7 +512,7 @@
                     <li>SQL, Python</li>
                     <li>Cloud Platforms</li>
                 </ul>
-                
+
                 <h3>Leadership & Soft Skills</h3>
                 <ul>
                     <li>Management d'équipes produit</li>
@@ -490,7 +523,7 @@
                     <li>Mentoring & coaching</li>
                 </ul>
             </section>
-            
+
             <section class="languages section">
                 <h2><i class="fas fa-language"></i> Langues</h2>
                 <div class="language-item">
@@ -500,7 +533,7 @@
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 100%"></div>
                 </div>
-                
+
                 <div class="language-item">
                     <span class="language-name">Anglais</span>
                     <span class="language-level">Courant</span>
@@ -508,7 +541,7 @@
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 95%"></div>
                 </div>
-                
+
                 <div class="language-item">
                     <span class="language-name">Français</span>
                     <span class="language-level">Courant</span>
@@ -516,7 +549,7 @@
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 90%"></div>
                 </div>
-                
+
                 <div class="language-item">
                     <span class="language-name">Portugais</span>
                     <span class="language-level">Courant</span>
@@ -524,7 +557,7 @@
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 85%"></div>
                 </div>
-                
+
                 <div class="language-item">
                     <span class="language-name">Italien</span>
                     <span class="language-level">Courant</span>
@@ -533,7 +566,7 @@
                     <div class="skill-bar" style="width: 80%"></div>
                 </div>
             </section>
-            
+
             <section class="section">
                 <h2><i class="fas fa-graduation-cap"></i> Formation</h2>
                 <h3>Ingénieur Informatique</h3>
@@ -544,7 +577,7 @@
                     <li>Boursier "Président"</li>
                 </ul>
             </section>
-            
+
             <section class="section">
                 <h2><i class="fas fa-certificate"></i> Certifications</h2>
                 <ul>
@@ -555,18 +588,24 @@
                 </ul>
             </section>
         </aside>
-        
+
         <main class="main-content">
             <section class="section">
                 <h2><i class="fas fa-user-tie"></i> Profil Professionnel</h2>
                 <div class="highlight-box">
-                    <p><strong>Chef de Projet Senior / Product Owner</strong> avec plus de <strong>15 ans d'expérience</strong> dans la gestion de produits digitaux complexes et le pilotage de transformations agiles à grande échelle. Expert en méthodologies SAFe et LEAN, avec un parcours démontré dans la définition de visions produit stratégiques, la gestion de roadmaps multi-équipes et l'alignement business-tech. Reconnu pour ma capacité à transformer des ambitions business en solutions concrètes, à fédérer des équipes internationales autour d'objectifs communs et à instaurer des gouvernances produit performantes.</p>
+                    <p><strong>Chef de Projet Senior / Product Owner</strong> avec plus de <strong>15 ans
+                            d'expérience</strong> dans la gestion de produits digitaux complexes et le pilotage de
+                        transformations agiles à grande échelle. Expert en méthodologies SAFe et LEAN, avec un parcours
+                        démontré dans la définition de visions produit stratégiques, la gestion de roadmaps
+                        multi-équipes et l'alignement business-tech. Reconnu pour ma capacité à transformer des
+                        ambitions business en solutions concrètes, à fédérer des équipes internationales autour
+                        d'objectifs communs et à instaurer des gouvernances produit performantes.</p>
                 </div>
             </section>
-            
+
             <section class="section">
                 <h2><i class="fas fa-chart-line"></i> Compétences Clés Product Owner</h2>
-                
+
                 <div class="competencies-grid">
                     <div class="competency-card">
                         <h3><i class="fas fa-lightbulb"></i> Vision & Stratégie</h3>
@@ -577,7 +616,7 @@
                             <li>Anticipation besoins utilisateurs</li>
                         </ul>
                     </div>
-                    
+
                     <div class="competency-card">
                         <h3><i class="fas fa-tasks"></i> Backlog & Priorisation</h3>
                         <ul>
@@ -587,7 +626,7 @@
                             <li>User Stories détaillées</li>
                         </ul>
                     </div>
-                    
+
                     <div class="competency-card">
                         <h3><i class="fas fa-users"></i> Leadership</h3>
                         <ul>
@@ -597,7 +636,7 @@
                             <li>Entretiens & suivi carrière</li>
                         </ul>
                     </div>
-                    
+
                     <div class="competency-card">
                         <h3><i class="fas fa-chart-bar"></i> Amélioration Continue</h3>
                         <ul>
@@ -609,10 +648,10 @@
                     </div>
                 </div>
             </section>
-            
+
             <section class="section">
                 <h2><i class="fas fa-briefcase"></i> Expérience Professionnelle</h2>
-                
+
                 <div class="job">
                     <div class="job-header">
                         <span class="company">
@@ -623,17 +662,21 @@
                     </div>
                     <h3>Service Delivery Manager & LEAN Portfolio Manager</h3>
                     <em>Client: AMADEUS - Leader mondial solutions tech voyage</em>
-                    
+
                     <ul>
-                        <li><strong>Vision stratégique:</strong> Définition stratégie produit Digital Workplace Services, identification opportunités innovation pour 15 000+ utilisateurs internes</li>
-                        <li><strong>Roadmap & Priorisation:</strong> Élaboration roadmap 12-18 mois pour 8 EPICs, priorisation LEAN (WSJF) basée valeur business et dépendances techniques</li>
-                        <li><strong>Gestion Backlog:</strong> Optimisation backlog +50 initiatives, arbitrage quotidien DSI/métiers/tech pour alignement stratégique</li>
-                        <li><strong>Gouvernance & KPIs:</strong> Mise en place gouvernance structurée (PI Planning, Sprint Reviews, Retrospectives), 12 KPIs clés</li>
+                        <li><strong>Vision stratégique:</strong> Définition stratégie produit Digital Workplace
+                            Services, identification opportunités innovation pour 15 000+ utilisateurs internes</li>
+                        <li><strong>Roadmap & Priorisation:</strong> Élaboration roadmap 12-18 mois pour 8 EPICs,
+                            priorisation LEAN (WSJF) basée valeur business et dépendances techniques</li>
+                        <li><strong>Gestion Backlog:</strong> Optimisation backlog +50 initiatives, arbitrage quotidien
+                            DSI/métiers/tech pour alignement stratégique</li>
+                        <li><strong>Gouvernance & KPIs:</strong> Mise en place gouvernance structurée (PI Planning,
+                            Sprint Reviews, Retrospectives), 12 KPIs clés</li>
                         <li><strong>Réalisation OKRs:</strong> 95% succès OKRs départementaux sur 2022-2024</li>
                         <li><strong>Leadership:</strong> Encadrement 4 PMs, formation LEAN/SAFe/Product Ownership</li>
                     </ul>
                 </div>
-                
+
                 <div class="job">
                     <div class="job-header">
                         <span class="company">
@@ -645,13 +688,14 @@
                     <h3>Senior Business Consultant & Product Owner</h3>
                     <em>Client: LUXAIR Airlines</em>
                     <ul>
-                        <li><strong>Vision transformation:</strong> Stratégie modernisation systèmes inventaire Cloud, roadmap transformation 24 mois</li>
+                        <li><strong>Vision transformation:</strong> Stratégie modernisation systèmes inventaire Cloud,
+                            roadmap transformation 24 mois</li>
                         <li><strong>Discovery:</strong> Ateliers stakeholders, cartographie processus as-is/to-be</li>
                         <li><strong>Priorisation:</strong> Analyse 15+ initiatives, +40% efficacité ressources</li>
                         <li><strong>Coordination:</strong> Facilitation collaboration IT/Ops/Commercial</li>
                     </ul>
                 </div>
-                
+
                 <div class="job">
                     <div class="job-header">
                         <span class="company">
@@ -662,22 +706,26 @@
                     </div>
                     <h3>Chef de Projet Senior & Business Product Owner</h3>
                     <em>Clients: AMADEUS, Ministère Intérieur, Airlines</em>
-                    
+
                     <h4>Product Owner - Inventory (AMADEUS)</h4>
                     <ul>
-                        <li><strong>Produits complexes:</strong> PO PROS Dynamic Pricing Austrian/Lufthansa/TAP, backlogs +100 user stories/sprint</li>
-                        <li><strong>Spécifications:</strong> Specs détaillées intégrations API complexes, coordination multi-pays</li>
+                        <li><strong>Produits complexes:</strong> PO PROS Dynamic Pricing Austrian/Lufthansa/TAP,
+                            backlogs +100 user stories/sprint</li>
+                        <li><strong>Spécifications:</strong> Specs détaillées intégrations API complexes, coordination
+                            multi-pays</li>
                         <li><strong>Qualité:</strong> 98% satisfaction client, respect délais critiques</li>
                         <li><strong>Migration Cloud:</strong> PO migration RMS Cloud, +60% performance, -30% coûts</li>
                     </ul>
-                    
+
                     <h4>Business Transformation (AMADEUS)</h4>
                     <ul>
-                        <li><strong>Vision digitale:</strong> Stratégie BPA migrations système BoA/Amaszonas/Peruvian</li>
-                        <li><strong>Change Management:</strong> Conduite changement, formation +50 utilisateurs/managers</li>
+                        <li><strong>Vision digitale:</strong> Stratégie BPA migrations système BoA/Amaszonas/Peruvian
+                        </li>
+                        <li><strong>Change Management:</strong> Conduite changement, formation +50 utilisateurs/managers
+                        </li>
                         <li><strong>Stakeholders:</strong> Communication DSI/directions/partenaires</li>
                     </ul>
-                    
+
                     <h4>Product Owner National (Ministère)</h4>
                     <ul>
                         <li><strong>Produit réglementaire:</strong> PO API-PNR, backlog 100+ airlines</li>
@@ -685,7 +733,7 @@
                         <li><strong>Innovation:</strong> Monitoring temps réel données passagers</li>
                     </ul>
                 </div>
-                
+
                 <div class="job">
                     <div class="job-header">
                         <span class="company">
@@ -698,26 +746,40 @@
                     <em>Plus grande airline Amérique du Sud</em>
                     <ul>
                         <li><strong>Portfolio:</strong> Gestion 20+ projets Loyalty/CRM/BI, budget $5M+</li>
-                        <li><strong>Vision CRM:</strong> PO migration Siebel Loyalty 15M profils, roadmap +200 évolutions</li>
-                        <li><strong>BI Transformation:</strong> Pilotage évolutions produits BI, solutions Power BI/Oracle</li>
-                        <li><strong>Migration HOST:</strong> PM Amadeus→Sabre, 8 équipes internationales, zéro downtime</li>
+                        <li><strong>Vision CRM:</strong> PO migration Siebel Loyalty 15M profils, roadmap +200
+                            évolutions</li>
+                        <li><strong>BI Transformation:</strong> Pilotage évolutions produits BI, solutions Power
+                            BI/Oracle</li>
+                        <li><strong>Migration HOST:</strong> PM Amadeus→Sabre, 8 équipes internationales, zéro downtime
+                        </li>
                         <li><strong>Gouvernance:</strong> Steering Committees, KPIs, reporting direction</li>
                         <li><strong>Amélioration:</strong> Processus continu, -40% incidents</li>
                     </ul>
                 </div>
             </section>
-            
+
             <section class="section">
                 <h2><i class="fas fa-trophy"></i> Réalisations Clés</h2>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle" style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>-30% Time-to-Market</strong> via LEAN (Amadeus DWS)</li>
-                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle" style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>95% réalisation OKRs</strong> sur 2 ans (LEAN Portfolio Manager)</li>
-                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle" style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>Migration 15M profils CRM</strong> (LATAM) 99.8% succès</li>
-                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle" style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>Gouvernance produit structurée</strong> 3 organisations</li>
-                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle" style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>-40% incidents</strong> via amélioration continue</li>
+                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle"
+                            style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>-30%
+                            Time-to-Market</strong> via LEAN (Amadeus DWS)</li>
+                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle"
+                            style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>95%
+                            réalisation OKRs</strong> sur 2 ans (LEAN Portfolio Manager)</li>
+                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle"
+                            style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>Migration
+                            15M profils CRM</strong> (LATAM) 99.8% succès</li>
+                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle"
+                            style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>Gouvernance
+                            produit structurée</strong> 3 organisations</li>
+                    <li style="padding: 10px 0 10px 30px; position: relative;"><i class="fas fa-check-circle"
+                            style="position: absolute; left: 0; color: var(--secondary-color); font-size: 1.2rem;"></i><strong>-40%
+                            incidents</strong> via amélioration continue</li>
                 </ul>
             </section>
         </main>
     </div>
 </body>
+
 </html>
