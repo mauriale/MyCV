@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Create a pdfmake document definition
             const docDefinition = {
-                pageSize: 'A4',
+                pageSize: 'LETTER',
                 pageMargins: [20, 20, 20, 20],
                 content: [],
                 styles: {
@@ -307,23 +307,29 @@ document.addEventListener('DOMContentLoaded', function () {
                         const imgWidth = docDefinition.pageSize.width - (docDefinition.pageMargins[0] + docDefinition.pageMargins[2]);
                         const imgHeight = img.height * (imgWidth / img.width);
 
+                        // US Letter height is 792pt. Margins 20+20=40. Usable approx 752.
+                        // We use 750 to be safe.
+                        const pageHeight = 750;
+
                         // Add image to the PDF content
                         docDefinition.content.push({
                             image: dataUrl,
                             width: imgWidth,
                             // Only show part of the image on first page
-                            fit: [imgWidth, 720] // A4 height (841.89) - margins
+                            fit: [imgWidth, pageHeight]
                         });
 
                         // If image is larger than page height, add more pages
-                        if (imgHeight > 720) { // A4 usable height in points
+                        // Note: This simple slicing might cut text in half. 
+                        // Browser Print (Ctrl+P) is recommended for better text handling.
+                        if (imgHeight > pageHeight) {
                             docDefinition.content.push({
                                 image: dataUrl,
                                 width: imgWidth,
                                 pageBreak: 'before',
                                 // Position and crop image for second page
-                                fit: [imgWidth, 720],
-                                margin: [0, -720, 0, 0] // Move image up to show bottom part
+                                fit: [imgWidth, pageHeight],
+                                margin: [0, -pageHeight, 0, 0] // Move image up
                             });
                         }
 

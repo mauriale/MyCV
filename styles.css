@@ -403,35 +403,3 @@ ul li::before {
         margin-top: 5px;
     }
 }
-
-/* Print Styles */
-@media print {
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: white;
-        /* Save ink */
-    }
-
-    .action-buttons-panel {
-        display: none;
-    }
-
-    .cv-container {
-        display: block;
-    }
-
-    .sidebar {
-        border: none;
-        padding: 0;
-        margin-bottom: 20px;
-    }
-
-    .job {
-        break-inside: avoid;
-    }
-
-    h2 {
-        border-bottom: 2px solid #000;
-    }
-}

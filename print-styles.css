@@ -1,117 +1,290 @@
 /* Print-specific styles for CV - High Fidelity */
-@media print,
-.generating-pdf {
 
-    /* Page Settings */
+/* ==========================================================================
+   1. Browser Print Styles (@media print)
+   ========================================================================== */
+@media print {
+
+    /* Page Settings - Explicitly set size and remove default margins */
     @page {
-        size: A4 portrait;
-        margin: 0;
-        /* Minimal margin to allow colored background to bleed if possible */
+        size: letter portrait;
+        /* US Letter Size */
+        margin: 0 !important;
+        /* Force zero margin on the page box */
+    }
+
+    /* Force html and body to take full real estate */
+    html {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #faf8f0 !important;
+        /* Ensure background covers everything */
     }
 
     body {
-        /* Force background colors and exact printing */
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         background-color: #faf8f0 !important;
-        /* Cream background forced */
         color: #222222 !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 20px !important;
-        /* Internal padding for the paper */
-        zoom: 0.8;
-        /* Slight zoom out to fit content if needed */
-    }
 
-    .cv-container {
-        /* Maintain the grid layout from styles.css */
-        display: grid !important;
-        grid-template-columns: 350px 1fr !important;
-        /* Force sidebar width 350px */
-        gap: 30px !important;
-        box-shadow: none !important;
-        margin: 0 auto !important;
+        /* Layout dimensions */
         width: 100% !important;
         max-width: none !important;
+        /* Override potential inherited max-widths */
+        min-width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0.25in !important;
+        /* Reduced comfortable padding */
+
+        box-sizing: border-box !important;
+        font-size: 11pt;
+        font-family: 'Roboto', sans-serif;
     }
 
-    /* Force Backgrounds and Colors on all elements */
-    * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+    /* Layout Container */
+    .cv-container {
+        display: grid !important;
+        grid-template-columns: 220px 1fr !important;
+        /* Sidebar fixed, Content fills rest */
+        gap: 20px !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        border: none !important;
+        background-color: transparent !important;
     }
 
+    /* Header */
+    .cv-header {
+        grid-column: 1 / -1;
+        border-bottom: 2px solid #000000 !important;
+        margin-bottom: 15px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* Sidebar */
     .sidebar {
         background-color: transparent !important;
+        border-right: 1px solid #000000 !important;
+        /* Clean separator */
         border: 2px solid #000000 !important;
+        /* Keep the desired box look */
+        padding: 15px !important;
+        height: fit-content;
+        margin-right: 0 !important;
     }
 
-    /* Ensure icons and headers are colored */
-    h1,
-    h2,
-    h3,
-    .job-title,
-    .company {
-        color: #000000 !important;
-    }
-
-    .job-title {
-        color: #f4b400 !important;
-        /* Yellow */
-    }
-
-    i,
-    .fas,
-    .fab {
-        color: inherit !important;
-    }
-
-    #value-prop-section i.fas {
-        color: #000 !important;
-        background-color: #f4b400 !important;
-    }
-
-    /* Hide interactive elements */
+    /* Hide Interactive Elements */
+    .social-links,
+    .language-toggle,
     .action-buttons-panel,
     .theme-toggle,
     .print-btn,
     .download-pdf,
-    .skip-link,
-    .social-links,
-    .language-toggle {
-
-        .social-links,
-        .language-toggle,
-        .action-buttons-panel,
-        #theme-toggle,
-        #print-btn,
-        #download-pdf {
-            display: none !important;
-        }
-
-        /* Prevent awkward breaks */
-        .section,
-        .job,
-        li {
-            page-break-inside: avoid;
-        }
-
-        a {
-            text-decoration: none !important;
-            color: inherit !important;
-        }
+    .skip-link {
+        display: none !important;
     }
 
-    /* Explicit class for PDF generation tool (dom-to-image) */
-    .generating-pdf {
-        background-color: #faf8f0 !important;
-        width: 1400px !important;
-        /* Force desktop width for capture */
-        margin: 0 auto !important;
+    /* Keep Header Links Text */
+    .header-links {
+        display: block !important;
+        margin-top: 5px;
     }
 
-    .generating-pdf .cv-container {
-        width: 1400px !important;
-        /* Match web width */
+    .header-links a {
+        text-decoration: none !important;
+        color: #000 !important;
+        font-size: 0.9rem;
     }
+
+    .link-separator {
+        color: #000 !important;
+        margin: 0 5px;
+    }
+
+    /* Content & Typography */
+    .main-content {
+        padding: 0 !important;
+    }
+
+    .section {
+        break-inside: avoid;
+        margin-bottom: 20px !important;
+    }
+
+    h1 {
+        font-size: 24pt !important;
+        margin-bottom: 5px !important;
+        color: #000 !important;
+    }
+
+    h2 {
+        font-size: 16pt !important;
+        border-bottom: 2px solid #000 !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 5px !important;
+        color: #000 !important;
+    }
+
+    h3 {
+        font-size: 13pt !important;
+        margin-top: 15px !important;
+        margin-bottom: 5px !important;
+        color: #000 !important;
+    }
+
+    .job {
+        break-inside: avoid;
+        margin-bottom: 15px !important;
+        border-left: 3px solid #f4b400 !important;
+        padding-left: 15px !important;
+    }
+
+    .job-title {
+        color: #f4b400 !important;
+    }
+
+    .company {
+        color: #000 !important;
+    }
+
+    .date {
+        background-color: #f4b400 !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
+        padding: 2px 6px !important;
+        font-weight: bold !important;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: #000 !important;
+    }
+}
+
+/* ==========================================================================
+   2. JS PDF Generation Styles (.generating-pdf)
+   Targeting screen rendering for dom-to-image capture
+   ========================================================================== */
+.generating-pdf body {
+    background-color: #faf8f0 !important;
+    color: #222222 !important;
+    width: 816px !important;
+    /* Letter width px @ 96dpi */
+    margin: 0 auto !important;
+    padding: 0.25in !important;
+    box-sizing: border-box !important;
+    max-width: none !important;
+}
+
+.generating-pdf .cv-container {
+    display: grid !important;
+    grid-template-columns: 220px 1fr !important;
+    gap: 20px !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    border: none !important;
+}
+
+/* Apply same overrides as print for generating-pdf */
+.generating-pdf .cv-header {
+    grid-column: 1 / -1;
+    border-bottom: 2px solid #000000 !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 10px !important;
+}
+
+.generating-pdf .sidebar {
+    background-color: transparent !important;
+    border: 2px solid #000000 !important;
+    padding: 15px !important;
+    height: fit-content;
+}
+
+.generating-pdf .social-links,
+.generating-pdf .language-toggle,
+.generating-pdf .action-buttons-panel,
+.generating-pdf .theme-toggle,
+.generating-pdf .print-btn,
+.generating-pdf .download-pdf,
+.generating-pdf .skip-link {
+    display: none !important;
+}
+
+.generating-pdf .header-links {
+    display: block !important;
+    margin-top: 5px;
+}
+
+.generating-pdf .header-links a {
+    text-decoration: none !important;
+    color: #000 !important;
+    font-size: 0.9rem;
+}
+
+.generating-pdf .link-separator {
+    color: #000 !important;
+    margin: 0 5px;
+}
+
+.generating-pdf .main-content {
+    padding: 0 !important;
+}
+
+.generating-pdf .section {
+    margin-bottom: 20px !important;
+}
+
+.generating-pdf h1 {
+    font-size: 24pt !important;
+    margin-bottom: 5px !important;
+    color: #000 !important;
+}
+
+.generating-pdf h2 {
+    font-size: 16pt !important;
+    border-bottom: 2px solid #000 !important;
+    margin-bottom: 10px !important;
+    padding-bottom: 5px !important;
+    color: #000 !important;
+}
+
+.generating-pdf h3 {
+    font-size: 13pt !important;
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
+    color: #000 !important;
+}
+
+.generating-pdf .job {
+    margin-bottom: 15px !important;
+    border-left: 3px solid #f4b400 !important;
+    padding-left: 15px !important;
+}
+
+.generating-pdf .job-title {
+    color: #f4b400 !important;
+}
+
+.generating-pdf .company {
+    color: #000 !important;
+}
+
+.generating-pdf .date {
+    background-color: #f4b400 !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    padding: 2px 6px !important;
+    font-weight: bold !important;
+}
+
+.generating-pdf a {
+    text-decoration: none !important;
+    color: #000 !important;
+}
