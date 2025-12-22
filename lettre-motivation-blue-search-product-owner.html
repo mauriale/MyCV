@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettre de Motivation - Mauricio Inocencio | Chef de Projet Senior / Senior Product Owner</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="print-styles.css" media="print">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #06b6d4;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: var(--bg-light);
+            padding: 40px 20px;
+        }
+
+        .letter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info i {
+            width: 16px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .date-location {
+            text-align: right;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .recipient {
+            margin-bottom: 30px;
+        }
+
+        .recipient p {
+            margin: 3px 0;
+            color: var(--text-color);
+        }
+
+        .recipient .company-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+
+        .object {
+            margin: 30px 0;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .object strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .greeting {
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .body-text {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .body-text strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.08));
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .highlight li {
+            margin: 8px 0;
+            line-height: 1.7;
+        }
+
+        .closing {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .footer {
+            background: var(--bg-light);
+            padding: 20px 50px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .letter-container {
+                box-shadow: none;
+            }
+
+            .footer {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 25px;
+            }
+
+            .header {
+                padding: 30px 25px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-container">
+        <header class="header">
+            <div class="header-content">
+                <h1>MAURICIO INOCENCIO TAPIA</h1>
+                <div class="subtitle">Chef de Projet Senior / Senior Product Owner</div>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone-alt"></i> +33 7 81 72 26 80</p>
+                    <p><i class="fas fa-envelope"></i> mauriale@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Nice, France</p>
+                    <p><i class="fab fa-linkedin"></i> linkedin.com/in/mauricioinocencio</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="date-location">
+                Nice, le 22 décembre 2024
+            </div>
+            
+            <div class="recipient">
+                <p class="company-name">Blue Search Conseil</p>
+                <p>Service Recrutement</p>
+                <p>Nice, Provence-Alpes-Côte d'Azur</p>
+            </div>
+            
+            <div class="object">
+                <strong>Objet :</strong> Candidature au poste de Chef de Projet Senior / Senior Product Owner (Réf: AMW/3701)
+            </div>
+            
+            <p class="greeting">Madame, Monsieur,</p>
+            
+            <p class="body-text">
+                C'est avec un vif intérêt que je vous soumets ma candidature pour le poste de <strong>Chef de Projet Senior / Senior Product Owner</strong> au sein de votre client, annonceur 100% digital dans le secteur tertiaire. Fort de plus de <strong>15 ans d'expérience</strong> dans la gestion de produits digitaux complexes et le pilotage de transformations agiles, je suis convaincu de pouvoir apporter une contribution significative à la croissance de votre client.
+            </p>
+            
+            <p class="body-text">
+                Actuellement <strong>Service Delivery Manager et LEAN Portfolio Manager</strong> chez Scalian (client: Amadeus), j'ai développé une expertise reconnue dans l'alignement stratégique entre vision produit et exécution opérationnelle. Mon rôle me positionne à l'intersection de la stratégie business et de la réalisation technique, précisément là où s'exerce la responsabilité d'un Product Owner Senior.
+            </p>
+            
+            <div class="highlight">
+                <strong>Ma contribution directe aux missions du poste :</strong>
+                <ul>
+                    <li><strong>Vision & Stratégie Produit :</strong> J'ai défini et piloté la stratégie produit pour les Digital Workplace Services d'Amadeus, gérant un portefeuille de 8 EPICs stratégiques alignés sur les objectifs groupe. Je suis habitué à anticiper les besoins utilisateurs (15 000+ collaborateurs) et à identifier les opportunités d'innovation.</li>
+                    
+                    <li><strong>Roadmap & Backlog Management :</strong> Je maîtrise l'élaboration de roadmaps à moyen et long terme (12-18 mois) et la gestion de backlogs complexes (+50 initiatives). Ma méthodologie de priorisation LEAN (WSJF) me permet d'arbitrer efficacement entre valeur business, risques et dépendances techniques.</li>
+                    
+                    <li><strong>Leadership & Gouvernance :</strong> J'ai encadré et fait monter en compétence 4 Project Managers sur les principes LEAN et SAFe. J'ai instauré une gouvernance produit structurée (rituels PI Planning, Sprint Reviews, Retrospectives) et défini 12 KPIs clés garantissant la performance des équipes.</li>
+                    
+                    <li><strong>Méthodologies Agiles :</strong> Certifié SAFe LEAN Agilist et PMP, j'ai une excellente maîtrise de Scrum, SAFe et Kanban. J'ai réussi à réduire le Time-to-Market de 30% grâce à l'optimisation des processus agiles.</li>
+                    
+                    <li><strong>Amélioration Continue & KPIs :</strong> J'ai atteint 95% de réalisation des OKRs départementaux sur 2 ans consécutifs. Je collecte systématiquement les retours utilisateurs et données d'usage pour orienter les évolutions produit, ayant réduit les incidents post-déploiement de 40%.</li>
+                </ul>
+            </div>
+            
+            <p class="body-text">
+                Au-delà de mes compétences techniques, je possède une <strong>forte capacité de communication et de négociation</strong> avec des stakeholders de tous niveaux, de la direction générale aux équipes opérationnelles. Mon expérience internationale (EMEA, LATAM) et ma maîtrise de 5 langues (français, anglais, espagnol, portugais, italien) me permettent d'évoluer aisément dans des environnements multiculturels et d'assurer une communication fluide avec des parties prenantes disparates.
+            </p>
+            
+            <p class="body-text">
+                Mes précédentes expériences chez LATAM Airlines (migration CRM de 15M de profils), Conztanz (implémentation PROS Dynamic Pricing pour Lufthansa, TAP, Austrian) et Kiveca (transformation cloud pour Luxair) m'ont permis de développer une <strong>vision stratégique business</strong> et une capacité à transformer des ambitions en solutions concrètes et mesurables.
+            </p>
+            
+            <p class="body-text">
+                Je suis particulièrement attiré par l'opportunité de <strong>structurer une gouvernance produit</strong> et de contribuer à la définition d'une vision à long terme pour un acteur 100% digital en pleine croissance. Mon approche pragmatique, centrée sur la valeur utilisateur et l'amélioration continue, correspond parfaitement aux attentes du poste.
+            </p>
+            
+            <p class="closing">
+                Je serais ravi de vous rencontrer pour échanger sur la manière dont mon expérience et mes compétences peuvent servir les ambitions de votre client. Je reste à votre disposition pour tout complément d'information et pour convenir d'un entretien à votre convenance.
+            </p>
+            
+            <p class="body-text">
+                Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+            </p>
+            
+            <p class="signature">
+                Mauricio Inocencio Tapia
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p><i class="fas fa-paperclip"></i> Pièce jointe : CV détaillé</p>
+            <p style="margin-top: 10px;">Référence : AMW/3701 | Disponibilité : Immédiate</p>
+        </div>
+    </div>
+</body>
+</html>
